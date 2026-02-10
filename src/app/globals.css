@@ -38,10 +38,10 @@ body {
 
 /* Text Outline Utility */
 .text-outline {
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
   color: transparent;
 }
 .text-outline-hover {
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
   color: transparent;
 }

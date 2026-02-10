@@ -71,11 +71,11 @@ export default function Services() {
               }`}
             >
                {/* Large Background Typography */}
-               <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none overflow-hidden h-full flex items-center justify-end w-full opacity-30 select-none z-0">
+               <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none overflow-hidden h-full flex items-center justify-end w-full select-none z-0">
                   <span className={`text-[12vw] md:text-[8rem] lg:text-[10rem] font-black leading-none transition-all duration-500 ${
                     activeService === service.id 
-                      ? 'text-white/5 translate-x-10' 
-                      : 'text-outline translate-x-20 group-hover:translate-x-10'
+                      ? 'text-white/10 translate-x-10' 
+                      : 'text-white/5 translate-x-20 group-hover:translate-x-10'
                   }`}>
                     {service.bgText}
                   </span>

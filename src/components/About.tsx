@@ -37,7 +37,7 @@ export default function About() {
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
   return (
-    <section ref={containerRef} className="py-32 px-4 bg-background relative overflow-hidden">
+    <section id="about" ref={containerRef} className="py-32 px-4 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row gap-16 items-start">
           {/* Text Content */}

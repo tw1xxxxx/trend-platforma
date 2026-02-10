@@ -1,10 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Education() {
   return (
-    <section className="py-16 md:py-24 px-4 bg-[#161616] relative overflow-hidden">
+    <section id="education" className="py-16 md:py-24 px-4 bg-[#161616] relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-white/5 to-transparent pointer-events-none" />
 
@@ -67,14 +68,15 @@ export default function Education() {
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
           >
-            <button
-              className="group relative px-8 py-4 bg-transparent border border-white/20 overflow-hidden"
+            <Link
+              href="/education"
+              className="group relative px-8 py-4 bg-transparent border border-white/20 overflow-hidden inline-block"
             >
               <div className="absolute inset-0 w-0 bg-white transition-all duration-[250ms] ease-out group-hover:w-full opacity-10"></div>
               <span className="relative text-white font-bold uppercase tracking-wider text-sm group-hover:text-white transition-colors">
                 Подробнее о курсах
               </span>
-            </button>
+            </Link>
           </motion.div>
         </div>
       </div>

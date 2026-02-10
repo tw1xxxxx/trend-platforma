@@ -7,8 +7,8 @@ import { ChevronDown } from 'lucide-react';
 const services = [
   {
     id: 'design',
-    title: '01. Дизайн',
-    bgText: 'ДИЗАЙН',
+    number: '01',
+    title: 'ДИЗАЙН',
     description: 'Визуализация и концепция бренда',
     details: [
       'Разработка концепции коллекции',
@@ -19,8 +19,8 @@ const services = [
   },
   {
     id: 'engineering',
-    title: '02. Проектирование',
-    bgText: 'ПРОЕКТ',
+    number: '02',
+    title: 'ПРОЕКТИРОВАНИЕ',
     description: 'Техническая документация и лекала',
     details: [
       'Разработка лекал любой сложности',
@@ -31,8 +31,8 @@ const services = [
   },
   {
     id: 'sewing',
-    title: '03. Пошив',
-    bgText: 'ПОШИВ',
+    number: '03',
+    title: 'ПОШИВ',
     description: 'Производство образцов и партий',
     details: [
       'Пошив экспериментального образца',
@@ -47,7 +47,7 @@ export default function Services() {
   const [activeService, setActiveService] = useState<string | null>(null);
 
   return (
-    <section className="py-24 px-4 bg-background relative z-10 overflow-hidden">
+    <section id="services" className="py-24 px-4 bg-background relative z-10 overflow-hidden">
       <div className="max-w-5xl mx-auto relative">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
@@ -70,24 +70,18 @@ export default function Services() {
                 activeService === service.id ? 'bg-white/5 rounded-sm border-none py-12 px-6 md:px-12' : 'py-8'
               }`}
             >
-               {/* Large Background Typography */}
-               <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none overflow-hidden h-full flex items-center justify-end w-full select-none z-0">
-                  <span className={`text-[12vw] md:text-[8rem] lg:text-[10rem] font-black leading-none transition-all duration-500 ${
-                    activeService === service.id 
-                      ? 'text-white/10 translate-x-10' 
-                      : 'text-white/5 translate-x-20 group-hover:translate-x-10'
-                  }`}>
-                    {service.bgText}
-                  </span>
-               </div>
-
               <div className="relative z-10">
                 <button
                   onClick={() => setActiveService(activeService === service.id ? null : service.id)}
                   className="w-full text-left flex items-center justify-between group/btn"
                 >
-                  <div>
-                    <h3 className={`text-3xl md:text-5xl font-bold transition-colors duration-300 uppercase tracking-tighter ${
+                  <div className="flex items-baseline gap-4 md:gap-8">
+                    <span className={`text-sm md:text-base font-bold transition-colors duration-300 ${
+                      activeService === service.id ? 'text-white/50' : 'text-white/30'
+                    }`}>
+                      {service.number}
+                    </span>
+                    <h3 className={`text-4xl md:text-6xl lg:text-7xl font-black transition-colors duration-300 uppercase tracking-tighter ${
                       activeService === service.id ? 'text-white' : 'text-gray-500 group-hover/btn:text-white'
                     }`}>
                       {service.title}

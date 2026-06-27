@@ -1,28 +1,32 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
 import { useRef } from 'react';
 
 const projects = [
   {
     id: 1,
-    role: "ВИЗИОНЕРЫ",
-    project: "StreetStyle",
-    description: "Концепция уличной моды будущего",
-    color: "from-purple-900 to-blue-900" // Placeholder for image color/mood
+    role: "01",
+    project: "Индустрия",
+    description: "Швейная и модная индустрия — разборы: как должно быть и что реально происходит.",
+    image: "/images/about/industry.jpg",
+    color: "from-purple-900 to-blue-900"
   },
   {
     id: 2,
-    role: "ТЕХНОЛОГИ",
-    project: "SportPro",
-    description: "Разработали и внедрили линейку инновационных тканей с мембранным покрытием, обеспечивающих идеальную терморегуляцию для профессиональных спортсменов.",
+    role: "02",
+    project: "Производство",
+    description: "Как устроено и как работает в реальности.",
+    image: "/images/about/production.jpg",
     color: "from-emerald-900 to-teal-900"
   },
   {
     id: 3,
-    role: "ПРОИЗВОДИТЕЛИ",
-    project: "EcoLine",
-    description: "Экологичное производство",
+    role: "03",
+    project: "Стиль",
+    description: "Тренды через мышление.",
+    image: "/images/about/style.jpg",
     color: "from-orange-900 to-red-900"
   }
 ];
@@ -76,13 +80,14 @@ export default function About() {
               >
                 {/* Image Placeholder with Hover Effect */}
                 <div className="relative aspect-[4/5] overflow-hidden bg-neutral-900">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-40 group-hover:opacity-60 transition-opacity duration-500`} />
-                  
-                  {/* "Image" - In real project replace this div with <Image /> */}
-                  <div className="absolute inset-0 flex items-center justify-center text-white/10 font-black text-9xl overflow-hidden select-none">
-                    {index + 1}
-                  </div>
-                  
+                  <Image
+                    src={item.image}
+                    alt={item.project}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 60vw"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-30 group-hover:opacity-20 transition-opacity duration-500`} />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
                   
                   {/* Overlay Content */}

@@ -40,9 +40,9 @@ export default function About() {
   return (
     <section id="about" className="py-32 px-4 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-16 items-start">
+        <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
           {/* Text Content */}
-          <div className="w-full md:w-1/3 sticky top-32">
+          <div className="w-full md:w-1/3 md:sticky md:top-32 shrink-0 relative z-10">
              <motion.div
                initial={{ opacity: 0, x: -50 }}
                whileInView={{ opacity: 1, x: 0 }}
@@ -69,7 +69,7 @@ export default function About() {
           </div>
 
           {/* Projects Gallery */}
-          <div className="w-full md:w-2/3 grid grid-cols-1 gap-12 md:gap-24">
+          <div className="w-full md:w-2/3 grid grid-cols-1 gap-12 md:gap-24 pt-2 md:pt-0">
             {projects.map((item, index) => (
               <motion.div
                 key={item.id}
@@ -77,7 +77,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className={`relative group cursor-pointer ${index % 2 !== 0 ? 'md:ml-auto' : ''} md:w-4/5`}
+                className={`relative group cursor-pointer ${index === 0 ? 'mt-4 md:mt-0' : ''} ${index % 2 !== 0 ? 'md:ml-auto' : ''} md:w-4/5`}
               >
                 {/* Image Placeholder with Hover Effect */}
                 <div className="relative aspect-[4/5] overflow-hidden bg-neutral-900">
@@ -106,7 +106,7 @@ export default function About() {
                 </div>
 
                 {/* Decorative Elements */}
-                <div className="absolute -top-4 -right-4 w-24 h-24 border-t border-r border-white/20 group-hover:border-white/50 transition-colors duration-500 -z-10" />
+                <div className="absolute top-0 md:-top-4 -right-4 w-24 h-24 border-t border-r border-white/20 group-hover:border-white/50 transition-colors duration-500 -z-10" />
                 <div className="absolute -bottom-4 -left-4 w-24 h-24 border-b border-l border-white/20 group-hover:border-white/50 transition-colors duration-500 -z-10" />
               </motion.div>
             ))}

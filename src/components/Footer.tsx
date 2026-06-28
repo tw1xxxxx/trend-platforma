@@ -94,8 +94,11 @@ export default function Footer() {
                 </span>
               </Link>
               <p className="text-sm text-hero-warm-mid font-light leading-relaxed max-w-xs">
-                Смотрим в будущее — создаём настоящее. Полный цикл для fashion-брендов: от идеи до
-                производства.
+                Смотрим в будущее — создаём{' '}
+                <span className="text-hero-warm-light font-semibold tracking-wide uppercase">
+                  настоящее
+                </span>
+                . Полный цикл для fashion-брендов: от идеи до производства.
               </p>
             </div>
 

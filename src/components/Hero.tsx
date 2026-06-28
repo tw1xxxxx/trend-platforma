@@ -70,9 +70,17 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
-            className="text-sm md:text-base text-gray-300 font-light tracking-wide"
+            className="text-sm md:text-base text-gray-300 font-light tracking-wide leading-relaxed"
           >
-            Смотрим в будущее — создаём настоящее.
+            Смотрим в будущее — создаём{' '}
+            <span className="relative inline-block text-hero-warm-light font-semibold tracking-[0.12em] uppercase">
+              настоящее
+              <span
+                aria-hidden
+                className="absolute -bottom-0.5 left-0 right-0 h-px bg-gradient-to-r from-transparent via-hero-warm-light/80 to-transparent"
+              />
+            </span>
+            .
           </motion.p>
         </motion.div>
       </div>

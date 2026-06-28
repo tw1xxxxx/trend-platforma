@@ -14,32 +14,32 @@ const specialistDetails = [
 
 export default function Education() {
   return (
-    <section id="education" className="py-24 md:py-32 px-4 bg-background relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative">
-        <div className="relative grid grid-cols-1 md:grid-cols-12 md:items-end gap-10 md:gap-0">
-          {/* Photo — без плашки, крупнее, нижние 30% уходят под текст */}
+    <section id="education" className="py-16 md:py-24 px-4 bg-background relative overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <div className="relative grid grid-cols-1 md:grid-cols-12">
+          {/* Фото — крупное, без плашки, z-0 */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative z-0 w-full md:col-span-7 md:col-start-1 md:row-start-1 mx-auto md:mx-0 md:-ml-6 lg:-ml-10"
+            className="col-span-full md:col-span-8 lg:col-span-7 row-start-1 z-0 pointer-events-none"
           >
-            <div className="relative w-full max-w-md md:max-w-none md:w-[115%] lg:w-[125%] aspect-[3/4] md:aspect-[4/5]">
+            <div className="relative w-[155%] -ml-[12%] md:w-[130%] md:-ml-8 lg:w-[140%] lg:-ml-12 aspect-[3/4] md:aspect-[4/5]">
               <Image
                 src="/images/education/specialist.png"
                 alt="Ведущий специалист"
                 fill
-                className="object-contain object-bottom transition-transform duration-700 hover:scale-[1.02]"
-                sizes="(max-width: 768px) 90vw, 55vw"
+                className="object-contain object-top md:object-bottom"
+                sizes="(max-width: 768px) 155vw, 65vw"
                 priority
               />
             </div>
           </motion.div>
 
-          {/* Text — поверх нижней части фото */}
-          <div className="relative z-10 w-full md:col-span-6 md:col-start-7 md:row-start-1 md:self-end md:-ml-[8%] lg:-ml-[6%] md:pb-2">
-            <div className="space-y-8 md:pl-6 lg:pl-10 md:pt-[30%]">
+          {/* Текст — наезжает на нижние ~30% фото */}
+          <div className="col-span-full md:col-span-6 md:col-start-7 lg:col-start-7 row-start-1 z-10 pt-[92%] sm:pt-[88%] md:pt-[36%] lg:pt-[32%] md:self-end">
+            <div className="space-y-6 md:space-y-8 bg-gradient-to-b from-transparent from-0% via-background/95 via-[12%] to-background to-[28%] md:via-[18%] md:to-[35%] pt-2 pb-1">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -55,7 +55,6 @@ export default function Education() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.15 }}
-                className="md:bg-background/90 md:backdrop-blur-[2px] md:rounded-sm md:py-2"
               >
                 <h3 className="text-xl md:text-2xl font-bold uppercase tracking-wide text-hero-warm-mid mb-6">
                   Наш ведущий специалист

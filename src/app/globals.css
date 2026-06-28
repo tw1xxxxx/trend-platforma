@@ -4,12 +4,22 @@
   --background: #111111;
   --foreground: #ededed;
   --accent: #d4d4d4;
+  --hero-warm-light: #c9b59f;
+  --hero-warm-mid: #9a8778;
+  --hero-warm-muted: #6f5f52;
+  --hero-warm-deep: #4a3f38;
+  --hero-warm-soft: #e0d5c8;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
+  --color-hero-warm-light: var(--hero-warm-light);
+  --color-hero-warm-mid: var(--hero-warm-mid);
+  --color-hero-warm-muted: var(--hero-warm-muted);
+  --color-hero-warm-deep: var(--hero-warm-deep);
+  --color-hero-warm-soft: var(--hero-warm-soft);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

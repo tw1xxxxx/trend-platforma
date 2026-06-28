@@ -55,8 +55,8 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className={`relative border-b border-white/10 transition-all duration-500 group ${
-                activeService === service.id ? 'bg-white/5 rounded-sm border-none py-12 px-6 md:px-12' : 'py-8'
+              className={`relative border-b border-hero-warm-deep/30 transition-all duration-500 group ${
+                activeService === service.id ? 'bg-hero-warm-deep/15 rounded-sm border-none py-12 px-6 md:px-12' : 'py-8'
               }`}
             >
               <div className="relative z-10">
@@ -66,18 +66,18 @@ export default function Services() {
                 >
                   <div className="flex items-baseline gap-4 md:gap-8">
                     <span className={`text-sm md:text-base font-bold transition-colors duration-300 ${
-                      activeService === service.id ? 'text-white/50' : 'text-white/30'
+                      activeService === service.id ? 'text-hero-warm-mid/70' : 'text-hero-warm-muted/50'
                     }`}>
                       {service.number}
                     </span>
                     <h3 className={`text-4xl md:text-6xl lg:text-7xl font-black transition-colors duration-300 uppercase tracking-tighter ${
-                      activeService === service.id ? 'text-white' : 'text-gray-500 group-hover/btn:text-white'
+                      activeService === service.id ? 'text-hero-warm-light' : 'text-hero-warm-muted group-hover/btn:text-hero-warm-mid'
                     }`}>
                       {service.title}
                     </h3>
                   </div>
-                  <div className={`p-4 rounded-full border border-white/10 transition-all duration-300 ${
-                    activeService === service.id ? 'rotate-180 bg-white text-black border-white' : 'group-hover/btn:bg-white/10 group-hover/btn:border-white/30'
+                  <div className={`p-4 rounded-full border border-hero-warm-deep/40 transition-all duration-300 text-hero-warm-mid ${
+                    activeService === service.id ? 'rotate-180 bg-hero-warm-soft/90 text-hero-warm-deep border-hero-warm-mid/50' : 'group-hover/btn:bg-hero-warm-deep/20 group-hover/btn:border-hero-warm-mid/40 group-hover/btn:text-hero-warm-light'
                   }`}>
                     <ChevronDown className="w-6 h-6" />
                   </div>
@@ -100,9 +100,9 @@ export default function Services() {
                               initial={{ opacity: 0, x: -20 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 0.1 + index * 0.1 }}
-                              className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors group/item"
+                              className="flex items-center gap-4 text-hero-warm-mid hover:text-hero-warm-light transition-colors group/item"
                             >
-                              <div className="w-8 h-[1px] bg-white/20 group-hover/item:w-12 group-hover/item:bg-white transition-all duration-300" />
+                              <div className="w-8 h-[1px] bg-hero-warm-mid/40 group-hover/item:w-12 group-hover/item:bg-hero-warm-light transition-all duration-300" />
                               <span className="text-base md:text-lg tracking-wide">{detail}</span>
                             </motion.li>
                           ))}
@@ -116,7 +116,7 @@ export default function Services() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.5 }}
-                            className="inline-block mt-10 text-base md:text-lg text-white hover:text-gray-300 transition-colors"
+                            className="inline-block mt-10 px-6 py-3 text-sm font-bold uppercase tracking-widest bg-hero-warm-soft/85 text-hero-warm-deep border border-hero-warm-mid/30 hover:bg-hero-warm-soft transition-colors"
                           >
                             Контакт 👉
                           </motion.a>

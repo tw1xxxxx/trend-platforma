@@ -1,15 +1,14 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useRef } from 'react';
 
 const projects = [
   {
     id: 1,
     role: "01",
     project: "Индустрия",
-    description: "Швейная и модная индустрия — разборы: как должно быть и что реально происходит.",
+    description: "Швейная и модная — разборы как должно быть и что реально происходит.",
     image: "/images/about/industry.jpg",
     color: "from-purple-900 to-blue-900"
   },
@@ -31,17 +30,15 @@ const projects = [
   }
 ];
 
+const trendwatchingPoints = [
+  'Следим за изменениями в технологиях, новостях индустрии и поведении людей.',
+  'Выявляем закономерности — куда движется рынок.',
+  'На основе анализа строим прогнозы, ищем новые возможности для продуктов, услуг или маркетинговых стратегий.',
+];
+
 export default function About() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-
   return (
-    <section id="about" ref={containerRef} className="py-32 px-4 bg-background relative overflow-hidden">
+    <section id="about" className="py-32 px-4 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row gap-16 items-start">
           {/* Text Content */}
@@ -51,19 +48,23 @@ export default function About() {
                whileInView={{ opacity: 1, x: 0 }}
                viewport={{ once: true }}
              >
-               <h2 className="text-4xl md:text-6xl font-bold uppercase mb-8 leading-none">
-                 Мы <br/>
-                 <span className="text-gray-600">Создаем</span> <br/>
-                 Бренды
+               <h2 className="text-4xl md:text-6xl font-black uppercase mb-4 leading-none tracking-tight text-hero-warm-light">
+                 Трендвотчинг
                </h2>
-               <p className="text-gray-400 font-light text-lg mb-8 leading-relaxed">
-                 Мы — компания полного цикла. Помогаем трансформировать смелые идеи в успешные fashion-проекты, 
-                 объединяя творчество, технологии и бизнес-экспертизу.
+               <p className="text-xl md:text-2xl font-light uppercase tracking-wide text-hero-warm-mid mb-8">
+                 в fashion.
                </p>
-               <div className="h-[1px] w-20 bg-white/20 mb-8" />
-               <p className="text-sm text-gray-500 uppercase tracking-widest">
-                 Scroll to explore
-               </p>
+               <ul className="space-y-5 mb-8">
+                 {trendwatchingPoints.map((point, index) => (
+                   <li key={index} className="flex items-start gap-4 text-hero-warm-mid group/item">
+                     <div className="w-8 h-[1px] bg-hero-warm-mid/40 mt-3 shrink-0 group-hover/item:w-12 group-hover/item:bg-hero-warm-light transition-all duration-300" />
+                     <span className="font-light text-base md:text-lg leading-relaxed tracking-wide">
+                       {point}
+                     </span>
+                   </li>
+                 ))}
+               </ul>
+               <div className="h-[1px] w-20 bg-hero-warm-mid/30" />
              </motion.div>
           </div>
 

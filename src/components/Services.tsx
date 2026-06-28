@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ArrowUpRight } from 'lucide-react';
 
 const services = [
   {
@@ -116,9 +116,10 @@ export default function Services() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.5 }}
-                            className="inline-block mt-10 px-6 py-3 text-sm font-bold uppercase tracking-widest bg-hero-warm-soft/85 text-hero-warm-deep border border-hero-warm-mid/30 hover:bg-hero-warm-soft transition-colors"
+                            className="group/contact inline-flex items-center gap-3 mt-10 px-8 py-3.5 bg-hero-warm-soft/90 text-hero-warm-deep border border-hero-warm-mid/40 text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-hero-warm-light hover:border-hero-warm-mid/60 transition-all duration-300"
                           >
-                            Контакт 👉
+                            <span>Связаться</span>
+                            <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover/contact:translate-x-0.5 group-hover/contact:-translate-y-0.5" />
                           </motion.a>
                         )}
                       </div>

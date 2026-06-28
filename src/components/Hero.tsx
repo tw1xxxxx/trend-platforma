@@ -48,7 +48,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-widest uppercase mb-2 text-white"
           >
-            Brand
+            Тренд
           </motion.h1>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -56,7 +56,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-xl md:text-3xl tracking-[0.2em] text-gray-400 uppercase mb-8"
           >
-            Developer
+            — Платформа
           </motion.h2>
           
           <motion.div
@@ -72,7 +72,7 @@ export default function Hero() {
             transition={{ duration: 1, delay: 1 }}
             className="text-sm md:text-base text-gray-300 font-light tracking-wide"
           >
-            СОЗДАЕМ БУДУЩЕЕ МОДЫ
+            Смотрим в будущее — создаём настоящее.
           </motion.p>
         </motion.div>
       </div>

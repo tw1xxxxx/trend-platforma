@@ -2,122 +2,154 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft, Check, Calendar, Clock } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 
-const courses = [
+const contactUrl = 'https://t.me/username';
+
+const programs = [
   {
-    id: 1,
-    title: 'Создание бренда с нуля',
-    description: 'Полный курс для тех, кто хочет запустить свой модный бренд. От идеи до первых продаж.',
-    duration: '2 месяца',
-    format: 'Онлайн + Оффлайн',
-    modules: [
-      'Анализ рынка и целевой аудитории',
-      'Разработка концепции и ДНК бренда',
-      'Производственный процесс и выбор тканей',
-      'Маркетинг и продажи'
-    ]
+    id: 'seminars',
+    title: 'Семинары, конференции',
+    description:
+      'На регулярной основе. Для конструкторов, технологов, владельцев брендов и цехов.',
+    actions: [
+      { label: 'Расписание', href: contactUrl, variant: 'outline' as const },
+      { label: 'Запись', href: contactUrl, variant: 'primary' as const },
+    ],
   },
   {
-    id: 2,
-    title: 'Конструирование и моделирование',
-    description: 'Профессиональный курс по созданию лекал и технической документации.',
-    duration: '3 месяца',
-    format: 'Оффлайн',
-    modules: [
-      'Основы конструирования',
-      'Моделирование сложных форм',
-      'Работа с САПР',
-      'Градация лекал'
-    ]
+    id: 'construction',
+    title: 'Конструирование — моделирование',
+    subtitle: 'Технология.',
+    details: ['Курс для профессионалов (повышение квалификации и ценника)'],
+    actions: [{ label: 'Запись', href: contactUrl, variant: 'primary' as const }],
   },
   {
-    id: 3,
-    title: 'Технология пошива',
-    description: 'Практический курс по технологии пошива изделий различной сложности.',
-    duration: '1.5 месяца',
-    format: 'Оффлайн',
-    modules: [
-      'Оборудование и швы',
-      'Поузловая обработка',
-      'ВТО (Влажно-тепловая обработка)',
-      'Пошив готового изделия'
-    ]
-  }
+    id: 'business',
+    title: 'Бизнес в модной индустрии',
+    details: [
+      'Лекции, семинары, курсы.',
+      'Стратегии, ошибки, болевые точки.',
+      'Находим выход. Решаем проблему.',
+    ],
+    actions: [{ label: 'Запись', href: contactUrl, variant: 'primary' as const }],
+  },
 ];
+
+function ActionButton({
+  label,
+  href,
+  variant,
+}: {
+  label: string;
+  href: string;
+  variant: 'primary' | 'outline';
+}) {
+  const base =
+    'inline-flex items-center gap-2 px-8 py-3.5 text-sm font-bold uppercase tracking-widest rounded-sm transition-all duration-300';
+  const styles =
+    variant === 'primary'
+      ? 'bg-hero-warm-soft/90 text-hero-warm-deep border border-hero-warm-mid/40 hover:bg-hero-warm-light hover:border-hero-warm-mid/60'
+      : 'bg-transparent text-hero-warm-light border border-hero-warm-mid/40 hover:bg-hero-warm-deep/20 hover:border-hero-warm-mid/60';
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`group ${base} ${styles}`}
+    >
+      <span>{label}</span>
+      <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+    </a>
+  );
+}
 
 export default function EducationPage() {
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 p-6 flex justify-between items-center bg-black/80 backdrop-blur-md">
-        <Link 
-          href="/" 
-          className="flex items-center gap-2 text-white/70 hover:text-white transition-colors group"
+    <div className="min-h-screen bg-background text-foreground selection:bg-hero-warm-soft selection:text-hero-warm-deep">
+      <nav className="fixed top-0 left-0 right-0 z-50 p-6 flex justify-between items-center bg-background/80 backdrop-blur-md border-b border-hero-warm-deep/20">
+        <Link
+          href="/"
+          className="flex items-center gap-2 text-hero-warm-mid hover:text-hero-warm-light transition-colors group"
         >
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
           <span className="font-bold uppercase tracking-wider text-sm">На главную</span>
         </Link>
       </nav>
 
-      <main className="pt-32 pb-20 px-4 max-w-7xl mx-auto">
+      <main className="pt-32 pb-20 px-4 max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-20"
+          className="mb-16 md:mb-24"
         >
-          <h1 className="text-5xl md:text-7xl font-bold uppercase mb-6">
-            Образовательные <br/> <span className="text-gray-600">программы</span>
+          <h1 className="text-4xl md:text-6xl font-black uppercase mb-6 tracking-tight text-hero-warm-light">
+            Обучение, семинары, переподготовка
           </h1>
-          <p className="text-xl text-gray-400 max-w-2xl font-light">
-            Мы передаем практические знания, накопленные за 10 лет работы в индустрии моды. 
-            Никакой воды, только работающие инструменты и методики.
-          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {courses.map((course, index) => (
-            <motion.div
-              key={course.id}
+        <div className="space-y-6">
+          {programs.map((program, index) => (
+            <motion.article
+              key={program.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 + 0.3 }}
-              className="bg-[#111] border border-white/10 p-8 rounded-sm hover:border-white/30 transition-colors group"
+              transition={{ delay: index * 0.1 + 0.2 }}
+              className="border-b border-hero-warm-deep/30 py-10 md:py-14"
             >
-              <div className="flex flex-col h-full">
-                <h3 className="text-2xl font-bold uppercase mb-4 group-hover:text-gray-300 transition-colors">
-                  {course.title}
-                </h3>
-                <p className="text-gray-500 mb-8 font-light">
-                  {course.description}
-                </p>
-
-                <div className="space-y-4 mb-8 flex-grow">
-                  <div className="flex items-center gap-3 text-sm text-gray-400">
-                    <Clock className="w-4 h-4" />
-                    <span>{course.duration}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-gray-400">
-                    <Calendar className="w-4 h-4" />
-                    <span>{course.format}</span>
-                  </div>
+              <div className="flex items-baseline gap-4 md:gap-6 mb-6">
+                <span className="text-sm md:text-base font-bold text-hero-warm-muted/50">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <div>
+                  <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-hero-warm-light">
+                    {program.title}
+                  </h2>
+                  {'subtitle' in program && program.subtitle && (
+                    <p className="text-2xl md:text-4xl font-black uppercase tracking-tight text-hero-warm-mid mt-1">
+                      {program.subtitle}
+                    </p>
+                  )}
                 </div>
+              </div>
 
-                <div className="space-y-3 border-t border-white/10 pt-6 mt-auto">
-                  {course.modules.map((module, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
-                      <Check className="w-4 h-4 text-white/40 mt-1 flex-shrink-0" />
-                      <span className="text-sm text-gray-400">{module}</span>
-                    </div>
+              <div className="md:pl-12 md:w-2/3 space-y-6">
+                {program.description && (
+                  <p className="text-base md:text-lg font-light leading-relaxed text-hero-warm-mid tracking-wide">
+                    {program.description}
+                  </p>
+                )}
+
+                {program.details && (
+                  <ul className="grid grid-cols-1 gap-4">
+                    {program.details.map((detail, detailIndex) => (
+                      <li
+                        key={detailIndex}
+                        className="flex items-start gap-4 text-hero-warm-mid group/item"
+                      >
+                        <div className="w-8 h-[1px] bg-hero-warm-mid/40 mt-3 shrink-0 group-hover/item:w-12 group-hover/item:bg-hero-warm-light transition-all duration-300" />
+                        <span className="text-base md:text-lg font-light leading-relaxed tracking-wide">
+                          {detail}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <div className="flex flex-wrap gap-4 pt-4">
+                  {program.actions.map((action) => (
+                    <ActionButton
+                      key={action.label}
+                      label={action.label}
+                      href={action.href}
+                      variant={action.variant}
+                    />
                   ))}
                 </div>
-
-                <button className="w-full mt-8 py-4 bg-white/5 hover:bg-white text-white hover:text-black font-bold uppercase tracking-wider text-sm transition-all rounded-sm">
-                  Записаться
-                </button>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </main>

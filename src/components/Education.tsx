@@ -2,50 +2,45 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
+
+const specialistDetails = [
+  'Эксперт-практик, более 30-летний опыт в швейной и модной отрасли.',
+  'Технолог-конструктор. Преподаватель.',
+  'Опыт работы в домах моды.',
+  '15 лет помощи создателям брендов и селлерам (массмаркет).',
+];
 
 export default function Education() {
   return (
-    <section id="education" className="py-16 md:py-24 px-4 bg-[#161616] relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-white/5 to-transparent pointer-events-none" />
-
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12 relative z-10">
-        <motion.div 
+    <section id="education" className="py-24 px-4 bg-background relative overflow-hidden">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16 relative z-10">
+        <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="w-2/3 md:w-1/2 relative mx-auto md:mx-0"
         >
-           <div className="aspect-[3/4] bg-neutral-800 rounded-sm overflow-hidden relative group">
-             {/* Placeholder for specialist photo */}
-             <div className="absolute inset-0 bg-gradient-to-tr from-gray-900 to-gray-800 flex items-center justify-center text-gray-600 border border-white/5">
-               <span className="uppercase tracking-widest text-sm">[Фото специалиста]</span>
-             </div>
-             
-             {/* Decorative frame */}
-             <div className="absolute -inset-4 border border-white/10 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-500" />
-           </div>
+          <div className="aspect-[3/4] bg-hero-warm-deep/20 rounded-sm overflow-hidden relative group">
+            <div className="absolute inset-0 bg-gradient-to-tr from-hero-warm-deep/40 to-background flex items-center justify-center border border-hero-warm-deep/30">
+              <span className="uppercase tracking-widest text-sm text-hero-warm-muted">
+                [Фото специалиста]
+              </span>
+            </div>
+            <div className="absolute -inset-4 border border-hero-warm-deep/30 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-500" />
+          </div>
         </motion.div>
 
         <div className="w-full md:w-1/2 space-y-8">
           <div>
-            <motion.span 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="text-xs font-bold tracking-[0.2em] text-gray-500 uppercase block mb-4"
-            >
-              Expertise & Knowledge
-            </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-5xl font-bold uppercase leading-tight"
+              className="text-3xl md:text-4xl lg:text-5xl font-black uppercase leading-tight tracking-tight text-hero-warm-light"
             >
-              Обучение у <br/>
-              <span className="text-gray-500">Профессионалов</span>
+              Обучение, семинары, переподготовка
             </motion.h2>
           </div>
 
@@ -53,13 +48,28 @@ export default function Education() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="space-y-6 text-gray-300 font-light text-lg leading-relaxed"
+            transition={{ delay: 0.15 }}
           >
-            <p>
-              Наш ведущий специалист с более чем 10-летним опытом в индустрии моды. 
-              Прошла путь от швеи до создателя собственного бренда. Мы делимся реальным опытом, а не теорией.
-            </p>
+            <h3 className="text-xl md:text-2xl font-bold uppercase tracking-wide text-hero-warm-mid mb-6">
+              Наш ведущий специалист
+            </h3>
+            <ul className="grid grid-cols-1 gap-4">
+              {specialistDetails.map((detail, index) => (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + index * 0.08 }}
+                  className="flex items-start gap-4 text-hero-warm-mid group/item"
+                >
+                  <div className="w-8 h-[1px] bg-hero-warm-mid/40 mt-3 shrink-0 group-hover/item:w-12 group-hover/item:bg-hero-warm-light transition-all duration-300" />
+                  <span className="text-base md:text-lg font-light leading-relaxed tracking-wide">
+                    {detail}
+                  </span>
+                </motion.li>
+              ))}
+            </ul>
           </motion.div>
 
           <motion.div
@@ -70,16 +80,14 @@ export default function Education() {
           >
             <Link
               href="/education"
-              className="group relative px-8 py-4 bg-transparent border border-white/20 overflow-hidden inline-block"
+              className="group inline-flex items-center gap-3 px-8 py-3.5 bg-hero-warm-soft/90 text-hero-warm-deep border border-hero-warm-mid/40 text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-hero-warm-light hover:border-hero-warm-mid/60 transition-all duration-300"
             >
-              <div className="absolute inset-0 w-0 bg-white transition-all duration-[250ms] ease-out group-hover:w-full opacity-10"></div>
-              <span className="relative text-white font-bold uppercase tracking-wider text-sm group-hover:text-white transition-colors">
-                Подробнее о курсах
-              </span>
+              <span>Подробнее о курсах</span>
+              <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </motion.div>
         </div>
       </div>
     </section>
-  )
+  );
 }

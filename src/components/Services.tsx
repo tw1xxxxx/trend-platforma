@@ -9,41 +9,34 @@ const services = [
     id: 'design',
     number: '01',
     title: 'ДИЗАЙН',
-    description: 'Эскизы, техдокументация и подбор материалов',
     details: [
-      'Создание эскизов, тех. рисунков. Консультации по выбору тканей и фурнитуры',
-      'Подготовка технической документации для любых целей'
-    ]
+      'Создание художественных эскизов',
+      'Создание технических рисунков',
+      'Формирование тех.документации для договоров и для цеха.'
+    ],
+    contactUrl: 'https://t.me/username'
   },
   {
     id: 'engineering',
     number: '02',
     title: 'ПРОЕКТИРОВАНИЕ',
-    description: 'Лекала, посадка и пошив образца',
     details: [
-      'Создание и проверка лекал',
-      'Диагностика и решение проблем посадки и технология производства',
-      'Пошив образца'
-    ]
-  },
-  {
-    id: 'consulting',
-    number: '03',
-    title: 'КОНСУЛЬТАЦИЯ',
-    description: 'Диагностика швейного проекта до вложений',
-    details: [
-      'Консультация/диагностика швейного проекта',
-      'Устранение проблем до вложений'
-    ]
+      'Создание лекал с нуля',
+      'Проверка готовых лекал',
+      'Диагностика и решение проблемы посадки вещи.',
+      'Технология пошива для цеха.',
+      'Отшив образца.'
+    ],
+    contactUrl: 'https://t.me/username'
   },
   {
     id: 'sewing',
-    number: '04',
+    number: '03',
     title: 'ПОШИВ',
-    description: 'Образцы, партии и индивидуальный пошив',
     details: [
-      'Отшив образца и тестовой партии',
-      'Индивидуальный пошив и дизайнерская реконструкция готовых изделий'
+      'Пошив для индивидуальных заказчиков',
+      'Дизайнерская реконструкция готовых вещей. (Апсайклинг)',
+      'Отшив образца для цеха, тестовых партий (от 5 шт).'
     ]
   }
 ];
@@ -54,15 +47,6 @@ export default function Services() {
   return (
     <section id="services" className="py-24 px-4 bg-background relative z-10 overflow-hidden">
       <div className="max-w-5xl mx-auto relative">
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold mb-16 tracking-tight uppercase relative z-20"
-        >
-          Направления <span className="text-gray-600">работы</span>
-        </motion.h2>
-
         <div className="space-y-6">
           {services.map((service) => (
             <motion.div
@@ -109,9 +93,6 @@ export default function Services() {
                       className="overflow-hidden"
                     >
                       <div className="pt-8 md:pt-12 md:w-2/3">
-                        <p className="text-gray-300 mb-8 text-xl font-light leading-relaxed border-l-2 border-white/20 pl-6">
-                          {service.description}
-                        </p>
                         <ul className="grid grid-cols-1 gap-4">
                           {service.details.map((detail, index) => (
                             <motion.li 
@@ -127,14 +108,19 @@ export default function Services() {
                           ))}
                         </ul>
                         
-                        <motion.button
-                           initial={{ opacity: 0, y: 20 }}
-                           animate={{ opacity: 1, y: 0 }}
-                           transition={{ delay: 0.5 }}
-                           className="mt-10 px-8 py-3 bg-white text-black text-sm font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors"
-                        >
-                          Заказать услугу
-                        </motion.button>
+                        {service.contactUrl && (
+                          <motion.a
+                            href={service.contactUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5 }}
+                            className="inline-block mt-10 text-base md:text-lg text-white hover:text-gray-300 transition-colors"
+                          >
+                            Контакт 👉
+                          </motion.a>
+                        )}
                       </div>
                     </motion.div>
                   )}

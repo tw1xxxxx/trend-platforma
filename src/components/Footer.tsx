@@ -49,6 +49,14 @@ function VkIcon({ className }: { className?: string }) {
   );
 }
 
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <h3 className="text-xs font-bold tracking-[0.2em] text-hero-warm-muted uppercase mb-5 text-center md:text-left">
+      {children}
+    </h3>
+  );
+}
+
 export default function Footer() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -57,13 +65,13 @@ export default function Footer() {
       <footer id="footer" className="bg-background border-t border-hero-warm-deep/30">
         {/* CTA */}
         <div className="border-b border-hero-warm-deep/20">
-          <div className="max-w-7xl mx-auto px-4 py-16 md:py-20">
-            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8">
-              <div>
+          <div className="max-w-7xl mx-auto px-5 sm:px-6 py-14 md:py-20">
+            <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end gap-8 text-center lg:text-left">
+              <div className="max-w-lg">
                 <p className="text-xs font-bold tracking-[0.25em] text-hero-warm-muted uppercase mb-4">
                   Тренд-Платформа
                 </p>
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-black uppercase leading-tight tracking-tight text-hero-warm-light">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-tight tracking-tight text-hero-warm-light">
                   Готовы создать
                   <br />
                   <span className="text-hero-warm-mid">свой бренд?</span>
@@ -71,7 +79,7 @@ export default function Footer() {
               </div>
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="group inline-flex items-center gap-3 px-8 py-4 bg-hero-warm-soft/90 text-hero-warm-deep border border-hero-warm-mid/40 text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-hero-warm-light hover:border-hero-warm-mid/60 transition-all duration-300 shrink-0"
+                className="group inline-flex w-full sm:w-auto items-center justify-center gap-3 px-8 py-4 bg-hero-warm-soft/90 text-hero-warm-deep border border-hero-warm-mid/40 text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-hero-warm-light hover:border-hero-warm-mid/60 transition-all duration-300 shrink-0"
               >
                 <span>Отправить заявку</span>
                 <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -81,10 +89,10 @@ export default function Footer() {
         </div>
 
         {/* Main grid */}
-        <div className="max-w-7xl mx-auto px-4 py-14 md:py-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-10">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 py-12 md:py-16">
+          <div className="flex flex-col gap-12 md:gap-0 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-x-10 lg:gap-x-10 md:gap-y-12">
             {/* Brand */}
-            <div className="sm:col-span-2 lg:col-span-1">
+            <div className="text-center md:text-left md:col-span-2 lg:col-span-1">
               <Link href="/" className="inline-block mb-4">
                 <span className="text-2xl font-black uppercase tracking-tight text-hero-warm-light">
                   Тренд
@@ -93,7 +101,7 @@ export default function Footer() {
                   {' '}— Платформа
                 </span>
               </Link>
-              <p className="text-sm text-hero-warm-mid font-light leading-relaxed max-w-xs">
+              <p className="text-sm text-hero-warm-mid font-light leading-relaxed max-w-sm mx-auto md:mx-0">
                 Смотрим в будущее — создаём{' '}
                 <span className="text-hero-warm-light font-semibold tracking-wide uppercase">
                   настоящее
@@ -102,77 +110,72 @@ export default function Footer() {
               </p>
             </div>
 
-            {/* Navigation */}
-            <div>
-              <h3 className="text-xs font-bold tracking-[0.2em] text-hero-warm-muted uppercase mb-5">
-                Навигация
-              </h3>
-              <ul className="space-y-3">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-hero-warm-mid hover:text-hero-warm-light transition-colors text-sm font-light tracking-wide"
-                    >
-                      {link.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* Navigation + Contacts — рядом на мобильном */}
+            <div className="grid grid-cols-2 gap-8 md:contents">
+              <div className="text-center md:text-left">
+                <SectionTitle>Навигация</SectionTitle>
+                <ul className="grid grid-cols-2 gap-x-4 gap-y-3 md:grid-cols-1 md:gap-y-3 max-w-xs mx-auto md:max-w-none md:mx-0">
+                  {navLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-hero-warm-mid hover:text-hero-warm-light transition-colors text-sm font-light tracking-wide"
+                      >
+                        {link.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            {/* Contacts */}
-            <div>
-              <h3 className="text-xs font-bold tracking-[0.2em] text-hero-warm-muted uppercase mb-5">
-                Связь
-              </h3>
-              <ul className="space-y-4">
-                <li>
-                  <a
-                    href={contacts.phoneHref}
-                    className="inline-flex items-center gap-3 text-hero-warm-light hover:text-hero-warm-soft transition-colors group"
-                  >
-                    <Phone className="w-4 h-4 text-hero-warm-mid group-hover:text-hero-warm-light shrink-0" />
-                    <span className="text-sm font-medium tracking-wide">{contacts.phone}</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={contacts.telegram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 text-hero-warm-mid hover:text-[#229ED9] transition-colors group"
-                  >
-                    <TelegramIcon className="w-5 h-5 shrink-0" />
-                    <span className="text-sm font-light">
-                      Telegram — {contacts.telegramLabel}
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={contacts.vk}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 text-hero-warm-mid hover:text-[#4C75A3] transition-colors group"
-                  >
-                    <VkIcon className="w-5 h-5 shrink-0" />
-                    <span className="text-sm font-light">Группа {contacts.vkLabel}</span>
-                  </a>
-                </li>
-              </ul>
+              <div className="text-center md:text-left">
+                <SectionTitle>Связь</SectionTitle>
+                <ul className="space-y-4 max-w-xs mx-auto md:max-w-none md:mx-0">
+                  <li>
+                    <a
+                      href={contacts.phoneHref}
+                      className="inline-flex items-center justify-center md:justify-start gap-3 text-hero-warm-light hover:text-hero-warm-soft transition-colors group"
+                    >
+                      <Phone className="w-4 h-4 text-hero-warm-mid group-hover:text-hero-warm-light shrink-0" />
+                      <span className="text-sm font-medium tracking-wide">{contacts.phone}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={contacts.telegram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center md:justify-start gap-3 text-hero-warm-mid hover:text-[#229ED9] transition-colors group"
+                    >
+                      <TelegramIcon className="w-5 h-5 shrink-0" />
+                      <span className="text-sm font-light text-left">
+                        Telegram — {contacts.telegramLabel}
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={contacts.vk}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center md:justify-start gap-3 text-hero-warm-mid hover:text-[#4C75A3] transition-colors group"
+                    >
+                      <VkIcon className="w-5 h-5 shrink-0" />
+                      <span className="text-sm font-light">Группа {contacts.vkLabel}</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             {/* Addresses */}
-            <div>
-              <h3 className="text-xs font-bold tracking-[0.2em] text-hero-warm-muted uppercase mb-5">
-                Адреса
-              </h3>
-              <ul className="space-y-5">
-                <li className="flex gap-3">
-                  <MapPin className="w-4 h-4 text-hero-warm-mid shrink-0 mt-0.5" />
+            <div className="text-center md:text-left md:col-span-2 lg:col-span-1">
+              <SectionTitle>Адреса</SectionTitle>
+              <ul className="space-y-6 max-w-md mx-auto md:max-w-none md:mx-0">
+                <li className="flex flex-col sm:flex-row md:flex-row gap-2 sm:gap-3 items-center md:items-start text-center md:text-left">
+                  <MapPin className="w-4 h-4 text-hero-warm-mid shrink-0 hidden sm:block md:block" />
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-wider text-hero-warm-light mb-1">
+                    <p className="text-xs font-bold uppercase tracking-wider text-hero-warm-light mb-1.5">
                       Офис
                     </p>
                     <p className="text-sm text-hero-warm-mid font-light leading-relaxed">
@@ -180,10 +183,10 @@ export default function Footer() {
                     </p>
                   </div>
                 </li>
-                <li className="flex gap-3">
-                  <MapPin className="w-4 h-4 text-hero-warm-mid shrink-0 mt-0.5" />
+                <li className="flex flex-col sm:flex-row md:flex-row gap-2 sm:gap-3 items-center md:items-start text-center md:text-left">
+                  <MapPin className="w-4 h-4 text-hero-warm-mid shrink-0 hidden sm:block md:block" />
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-wider text-hero-warm-light mb-1">
+                    <p className="text-xs font-bold uppercase tracking-wider text-hero-warm-light mb-1.5">
                       Производство
                     </p>
                     <p className="text-sm text-hero-warm-mid font-light leading-relaxed">
@@ -198,7 +201,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-hero-warm-deep/20">
-          <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-hero-warm-muted">
+          <div className="max-w-7xl mx-auto px-5 sm:px-6 py-6 flex flex-col items-center gap-3 md:flex-row md:justify-between text-xs text-hero-warm-muted text-center">
             <p>© {new Date().getFullYear()} Тренд-Платформа. Все права защищены.</p>
             <a href="#" className="hover:text-hero-warm-light transition-colors">
               Политика конфиденциальности

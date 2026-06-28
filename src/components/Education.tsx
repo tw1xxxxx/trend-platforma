@@ -23,12 +23,12 @@ export default function Education() {
           transition={{ duration: 0.8 }}
           className="w-2/3 md:w-1/2 relative mx-auto md:mx-0"
         >
-          <div className="aspect-[3/4] bg-background rounded-sm overflow-hidden relative group border border-hero-warm-deep/30">
+          <div className="aspect-[3/4] md:aspect-[4/5] bg-background rounded-sm overflow-hidden relative group border border-hero-warm-deep/30">
             <Image
               src="/images/education/specialist.png"
               alt="Ведущий специалист"
               fill
-              className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+              className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
               sizes="(max-width: 768px) 66vw, 50vw"
               priority
             />

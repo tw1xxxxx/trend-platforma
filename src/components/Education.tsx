@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -22,12 +23,15 @@ export default function Education() {
           transition={{ duration: 0.8 }}
           className="w-2/3 md:w-1/2 relative mx-auto md:mx-0"
         >
-          <div className="aspect-[3/4] bg-hero-warm-deep/20 rounded-sm overflow-hidden relative group">
-            <div className="absolute inset-0 bg-gradient-to-tr from-hero-warm-deep/40 to-background flex items-center justify-center border border-hero-warm-deep/30">
-              <span className="uppercase tracking-widest text-sm text-hero-warm-muted">
-                [Фото специалиста]
-              </span>
-            </div>
+          <div className="aspect-[3/4] bg-background rounded-sm overflow-hidden relative group border border-hero-warm-deep/30">
+            <Image
+              src="/images/education/specialist.png"
+              alt="Ведущий специалист"
+              fill
+              className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+              sizes="(max-width: 768px) 66vw, 50vw"
+              priority
+            />
             <div className="absolute -inset-4 border border-hero-warm-deep/30 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-500" />
           </div>
         </motion.div>

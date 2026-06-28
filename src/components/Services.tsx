@@ -37,7 +37,8 @@ const services = [
       'Пошив для индивидуальных заказчиков',
       'Дизайнерская реконструкция готовых вещей. (Апсайклинг)',
       'Отшив образца для цеха, тестовых партий (от 5 шт).'
-    ]
+    ],
+    contactUrl: 'https://t.me/username'
   }
 ];
 
@@ -80,33 +81,9 @@ function HoleTitle({ title, isActive }: { title: string; isActive: boolean }) {
 
 export default function Services() {
   const [activeService, setActiveService] = useState<string | null>(null);
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-  const ambientY = useTransform(scrollYProgress, [0, 1], ['-8%', '18%']);
 
   return (
-    <section
-      ref={sectionRef}
-      id="services"
-      className="py-24 px-4 bg-background relative z-10 overflow-hidden"
-    >
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 overflow-hidden"
-        style={{ y: ambientY }}
-      >
-        <div
-          className="absolute left-1/2 top-0 h-[140%] w-[120%] -translate-x-1/2 opacity-30 blur-3xl"
-          style={{
-            background:
-              'radial-gradient(ellipse at 30% 20%, #c9b59f 0%, transparent 55%), radial-gradient(ellipse at 70% 60%, #6f5f52 0%, transparent 50%), radial-gradient(ellipse at 50% 90%, #4a3f38 0%, transparent 45%)',
-          }}
-        />
-      </motion.div>
-
+    <section id="services" className="py-24 px-4 bg-background relative z-10 overflow-hidden">
       <div className="max-w-5xl mx-auto relative">
         <div className="space-y-6">
           {services.map((service) => (
@@ -171,7 +148,7 @@ export default function Services() {
                               key={index}
                               initial={{ opacity: 0, x: -20 }}
                               animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.1 + index * 0.1 }}
+                              transition={{ delay: 0.05 + index * 0.05 }}
                               className="flex items-center gap-4 text-hero-warm-mid hover:text-hero-warm-light transition-colors group/item"
                             >
                               <div className="w-8 h-[1px] bg-hero-warm-mid/40 group-hover/item:w-12 group-hover/item:bg-hero-warm-light transition-all duration-300" />
@@ -187,9 +164,9 @@ export default function Services() {
                             href={service.contactUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.5 }}
+                            transition={{ delay: 0.15, duration: 0.25 }}
                             className="group/contact inline-flex items-center gap-3 mt-10 px-8 py-3.5 bg-hero-warm-soft/90 text-hero-warm-deep border border-hero-warm-mid/40 text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-hero-warm-light hover:border-hero-warm-mid/60 transition-all duration-300"
                           >
                             <span>Связаться</span>

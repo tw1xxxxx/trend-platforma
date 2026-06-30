@@ -3,111 +3,167 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-const projects = [
+const insights = [
   {
-    id: 1,
-    role: "01",
-    project: "Индустрия",
-    description: "Швейная и модная — разборы как должно быть и что реально происходит.",
-    image: "/images/about/industry.jpg",
-    color: "from-purple-900 to-blue-900"
+    number: '01',
+    title: 'Индустрия',
+    body: 'Швейная и модная — разборы как должно быть и что реально происходит.',
+    image: '/images/about/industry.jpg',
   },
   {
-    id: 2,
-    role: "02",
-    project: "Производство",
-    description: "Как устроено и как работает в реальности.",
-    image: "/images/about/production.jpg",
-    color: "from-emerald-900 to-teal-900"
+    number: '02',
+    title: 'Производство',
+    body: 'Как устроено и как работает в реальности.',
+    image: '/images/about/production.jpg',
   },
   {
-    id: 3,
-    role: "03",
-    project: "Стиль",
-    description: "Тренды через мышление.",
-    image: "/images/about/style.jpg",
-    color: "from-orange-900 to-red-900"
-  }
+    number: '03',
+    title: 'Стиль',
+    body: 'Тренды через мышление.',
+    image: '/images/about/style.jpg',
+  },
 ];
 
-const trendwatchingPoints = [
+const points = [
   'Следим за изменениями в технологиях, новостях индустрии и поведении людей.',
   'Выявляем закономерности — куда движется рынок.',
-  'На основе анализа строим прогнозы, ищем новые возможности для продуктов, услуг или маркетинговых стратегий.',
+  'На основе анализа строим прогнозы, ищем новые возможности для продуктов, услуг и маркетинговых стратегий.',
 ];
 
 export default function About() {
   return (
-    <section id="about" className="py-32 px-4 bg-background relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
-          {/* Text Content */}
-          <div className="w-full md:w-1/3 md:sticky md:top-32 shrink-0 relative z-10">
-             <motion.div
-               initial={{ opacity: 0, x: -50 }}
-               whileInView={{ opacity: 1, x: 0 }}
-               viewport={{ once: true }}
-             >
-               <h2 className="text-4xl md:text-6xl font-black uppercase mb-4 leading-none tracking-tight text-hero-warm-light">
-                 Трендвотчинг
-               </h2>
-               <p className="text-xl md:text-2xl font-light uppercase tracking-wide text-hero-warm-mid mb-8">
-                 в fashion.
-               </p>
-               <ul className="space-y-5 mb-8">
-                 {trendwatchingPoints.map((point, index) => (
-                   <li key={index} className="flex items-start gap-4 text-hero-warm-mid group/item">
-                     <div className="w-8 h-[1px] bg-hero-warm-mid/40 mt-3 shrink-0 group-hover/item:w-12 group-hover/item:bg-hero-warm-light transition-all duration-300" />
-                     <span className="font-light text-base md:text-lg leading-relaxed tracking-wide">
-                       {point}
-                     </span>
-                   </li>
-                 ))}
-               </ul>
-               <div className="h-[1px] w-20 bg-hero-warm-mid/30" />
-             </motion.div>
-          </div>
+    <section id="about" className="py-20 md:py-32 bg-bg overflow-hidden">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6">
 
-          {/* Projects Gallery */}
-          <div className="w-full md:w-2/3 grid grid-cols-1 gap-12 md:gap-24 pt-2 md:pt-0">
-            {projects.map((item, index) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 100 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-10%" }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className={`relative group cursor-pointer ${index === 0 ? 'mt-4 md:mt-0' : ''} ${index % 2 !== 0 ? 'md:ml-auto' : ''} md:w-4/5`}
+        {/* ── Header ── */}
+        <div className="mb-14 md:mb-20">
+          <motion.div
+            initial={{ opacity: 0, x: -16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center gap-4 mb-6"
+          >
+            <span className="rule-accent" />
+            <span className="text-xs tracking-[0.3em] uppercase text-ink-3 font-medium">
+              Аналитика
+            </span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="font-display font-bold uppercase leading-[0.9] tracking-tight"
+            style={{ fontSize: 'clamp(36px, 11vw, 140px)' }}
+          >
+            <span className="block text-ink">Тренд</span>
+            <span className="block text-accent">вотчинг</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15, duration: 0.5 }}
+            className="font-display font-light uppercase text-ink-3 tracking-widest mt-1"
+            style={{ fontSize: 'clamp(16px, 3.5vw, 32px)' }}
+          >
+            в fashion
+          </motion.p>
+        </div>
+
+        {/* ── 3 analysis points ── */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-b border-line mb-16 md:mb-24">
+          {points.map((point, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className={`py-8 px-0 md:px-8 ${i < 2 ? 'md:border-r border-b md:border-b-0 border-line' : ''}`}
+            >
+              <span
+                className="font-display font-bold block mb-4 leading-none select-none text-line"
+                style={{ fontSize: 'clamp(40px, 6vw, 64px)' }}
               >
-                {/* Image Placeholder with Hover Effect */}
-                <div className="relative aspect-[4/5] overflow-hidden bg-neutral-900">
+                0{i + 1}
+              </span>
+              <p className="text-ink-2 text-sm md:text-base leading-relaxed">{point}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* ── Asymmetric image grid ── */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+
+          {/* Large image — left, spans 7 columns */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="md:col-span-7 group relative overflow-hidden"
+          >
+            <div className="relative w-full aspect-[4/5] overflow-hidden bg-bg-card">
+              <Image
+                src={insights[0].image}
+                alt={insights[0].title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 58vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 p-6 md:p-8">
+                <span className="text-[9px] font-mono text-white/40 tracking-widest block mb-2">
+                  {insights[0].number}
+                </span>
+                <h3
+                  className="font-display font-bold uppercase text-white leading-none mb-2"
+                  style={{ fontSize: 'clamp(24px, 4vw, 40px)' }}
+                >
+                  {insights[0].title}
+                </h3>
+                <p className="text-white/60 text-sm leading-relaxed max-w-xs">
+                  {insights[0].body}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right column — two stacked */}
+          <div className="md:col-span-5 grid grid-cols-2 md:grid-cols-1 gap-6">
+            {insights.slice(1).map((item, i) => (
+              <motion.div
+                key={item.number}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: (i + 1) * 0.12, duration: 0.7 }}
+                className="group relative overflow-hidden"
+              >
+                <div className="relative w-full aspect-[4/3] overflow-hidden bg-bg-card">
                   <Image
                     src={item.image}
-                    alt={item.project}
+                    alt={item.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 60vw"
+                    sizes="(max-width: 768px) 50vw, 42vw"
                   />
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-30 group-hover:opacity-20 transition-opacity duration-500`} />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
-                  
-                  {/* Overlay Content */}
-                  <div className="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/90 to-transparent">
-                    <div className="text-xs font-bold tracking-[0.2em] text-white/70 mb-2 uppercase">
-                      {item.role}
-                    </div>
-                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-2 uppercase">
-                      {item.project}
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 p-4 md:p-5">
+                    <span className="text-[9px] font-mono text-white/40 tracking-widest block mb-1">
+                      {item.number}
+                    </span>
+                    <h3
+                      className="font-display font-bold uppercase text-white leading-none mb-1"
+                      style={{ fontSize: 'clamp(16px, 3vw, 26px)' }}
+                    >
+                      {item.title}
                     </h3>
-                    <p className="text-gray-300 font-light text-sm">
-                      {item.description}
-                    </p>
+                    <p className="text-white/55 text-xs leading-relaxed">{item.body}</p>
                   </div>
                 </div>
-
-                {/* Decorative Elements */}
-                <div className="absolute top-0 md:-top-4 -right-4 w-24 h-24 border-t border-r border-white/20 group-hover:border-white/50 transition-colors duration-500 -z-10" />
-                <div className="absolute -bottom-4 -left-4 w-24 h-24 border-b border-l border-white/20 group-hover:border-white/50 transition-colors duration-500 -z-10" />
               </motion.div>
             ))}
           </div>

@@ -1,185 +1,155 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { ChevronDown, ArrowUpRight } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Plus, Minus, ArrowUpRight } from 'lucide-react';
 
 const services = [
   {
     id: 'design',
     number: '01',
-    title: 'ДИЗАЙН',
+    title: 'Дизайн',
     details: [
       'Создание художественных эскизов',
       'Создание технических рисунков',
-      'Формирование тех.документации для договоров и для цеха.'
+      'Формирование тех.документации для договоров и для цеха.',
     ],
-    contactUrl: 'https://t.me/username'
+    contactUrl: 'https://t.me/trendplatforma',
   },
   {
     id: 'engineering',
     number: '02',
-    title: 'ПРОЕКТИРОВАНИЕ',
+    title: 'Проектирование',
     details: [
       'Создание лекал с нуля',
       'Проверка готовых лекал',
       'Диагностика и решение проблемы посадки вещи.',
       'Технология пошива для цеха.',
-      'Отшив образца.'
+      'Отшив образца.',
     ],
-    contactUrl: 'https://t.me/username'
+    contactUrl: 'https://t.me/trendplatforma',
   },
   {
     id: 'sewing',
     number: '03',
-    title: 'ПОШИВ',
+    title: 'Пошив',
     details: [
       'Пошив для индивидуальных заказчиков',
       'Дизайнерская реконструкция готовых вещей. (Апсайклинг)',
-      'Отшив образца для цеха, тестовых партий (от 5 шт).'
+      'Отшив образца для цеха, тестовых партий (от 5 шт).',
     ],
-    contactUrl: 'https://t.me/username'
-  }
+    contactUrl: 'https://t.me/trendplatforma',
+  },
 ];
 
-function HoleTitle({ title, isActive }: { title: string; isActive: boolean }) {
-  const ref = useRef<HTMLHeadingElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  });
-  const backgroundPosition = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ['center 0%', 'center 100%']
-  );
-
-  return (
-    <h3
-      ref={ref}
-      className="relative text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-none"
-    >
-      <span
-        aria-hidden
-        className={`absolute inset-0 select-none pointer-events-none transition-all duration-500 ${
-          isActive ? 'text-hole-stroke--active' : 'text-hole-stroke'
-        }`}
-      >
-        {title}
-      </span>
-      <motion.span
-        className={`relative block transition-opacity duration-500 ${
-          isActive ? 'text-hole text-hole--active opacity-100' : 'text-hole opacity-90'
-        }`}
-        style={{ backgroundPosition }}
-      >
-        {title}
-      </motion.span>
-    </h3>
-  );
-}
-
 export default function Services() {
-  const [activeService, setActiveService] = useState<string | null>(null);
+  const [open, setOpen] = useState<string | null>(null);
 
   return (
-    <section id="services" className="py-24 px-4 bg-background relative z-10 overflow-hidden">
-      <div className="max-w-5xl mx-auto relative">
-        <div className="space-y-6">
-          {services.map((service) => (
-            <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className={`relative border-b border-hero-warm-deep/30 transition-all duration-500 group ${
-                activeService === service.id
-                  ? 'bg-hero-warm-deep/15 rounded-sm border-none py-12 px-6 md:px-12'
-                  : 'py-8'
-              }`}
-            >
-              <div className="relative z-10">
+    <section id="services" className="py-20 md:py-32 bg-bg">
+      <div className="max-w-5xl mx-auto px-5 sm:px-6">
+
+        {/* Section label */}
+        <motion.div
+          initial={{ opacity: 0, x: -16 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className="flex items-center gap-4 mb-12 md:mb-16"
+        >
+          <span className="rule-accent" />
+          <span className="text-xs tracking-[0.3em] uppercase text-ink-3 font-medium">
+            Направления
+          </span>
+        </motion.div>
+
+        {/* Accordion */}
+        <div>
+          {services.map((service, index) => {
+            const isOpen = open === service.id;
+            return (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                className="border-b border-line"
+              >
                 <button
-                  onClick={() =>
-                    setActiveService(activeService === service.id ? null : service.id)
-                  }
-                  className="w-full text-left flex items-center justify-between group/btn"
+                  onClick={() => setOpen(isOpen ? null : service.id)}
+                  className="w-full py-7 md:py-8 flex items-center justify-between text-left group"
+                  aria-expanded={isOpen}
                 >
-                  <div className="flex items-baseline gap-4 md:gap-8">
-                    <span
-                      className={`text-sm md:text-base font-bold transition-colors duration-300 ${
-                        activeService === service.id
-                          ? 'text-hero-warm-mid/70'
-                          : 'text-hero-warm-muted/50'
-                      }`}
-                    >
+                  <div className="flex items-center gap-4 md:gap-8 min-w-0 flex-1 overflow-hidden">
+                    <span className="text-[10px] font-mono text-ink-3/50 tabular-nums shrink-0 w-5">
                       {service.number}
                     </span>
-                    <HoleTitle
-                      title={service.title}
-                      isActive={activeService === service.id}
-                    />
+                    <h3
+                      className={`font-display font-bold uppercase leading-none transition-colors duration-200 min-w-0 ${
+                        isOpen ? 'text-accent' : 'text-ink group-hover:text-accent'
+                      }`}
+                      style={{ fontSize: 'clamp(28px, 7.5vw, 72px)', wordBreak: 'keep-all', overflowWrap: 'normal' }}
+                    >
+                      {service.title}
+                    </h3>
                   </div>
                   <div
-                    className={`p-4 rounded-full border border-hero-warm-deep/40 transition-all duration-300 text-hero-warm-mid shrink-0 ${
-                      activeService === service.id
-                        ? 'rotate-180 bg-hero-warm-soft/90 text-hero-warm-deep border-hero-warm-mid/50'
-                        : 'group-hover/btn:bg-hero-warm-deep/20 group-hover/btn:border-hero-warm-mid/40 group-hover/btn:text-hero-warm-light'
+                    className={`shrink-0 ml-4 transition-colors duration-200 ${
+                      isOpen ? 'text-accent' : 'text-ink-3 group-hover:text-accent'
                     }`}
                   >
-                    <ChevronDown className="w-6 h-6" />
+                    {isOpen ? (
+                      <Minus className="w-5 h-5" />
+                    ) : (
+                      <Plus className="w-5 h-5" />
+                    )}
                   </div>
                 </button>
 
-                <AnimatePresence>
-                  {activeService === service.id && (
+                <AnimatePresence initial={false}>
+                  {isOpen && (
                     <motion.div
+                      key="body"
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: 'easeInOut' }}
+                      transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="pt-8 md:pt-12 md:w-2/3">
-                        <ul className="grid grid-cols-1 gap-4">
-                          {service.details.map((detail, index) => (
+                      <div className="pb-10 md:pb-12 pl-9 md:pl-16">
+                        <ul className="space-y-3.5 mb-9">
+                          {service.details.map((detail, i) => (
                             <motion.li
-                              key={index}
-                              initial={{ opacity: 0, x: -20 }}
+                              key={i}
+                              initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.05 + index * 0.05 }}
-                              className="flex items-center gap-4 text-hero-warm-mid hover:text-hero-warm-light transition-colors group/item"
+                              transition={{ delay: i * 0.06 }}
+                              className="flex items-start gap-3 text-ink-2 text-base md:text-lg leading-relaxed"
                             >
-                              <div className="w-8 h-[1px] bg-hero-warm-mid/40 group-hover/item:w-12 group-hover/item:bg-hero-warm-light transition-all duration-300" />
-                              <span className="text-base md:text-lg tracking-wide">
-                                {detail}
-                              </span>
+                              <span className="mt-[11px] shrink-0 block w-4 h-[1px] bg-accent/50" />
+                              <span>{detail}</span>
                             </motion.li>
                           ))}
                         </ul>
-
-                        {service.contactUrl && (
-                          <motion.a
-                            href={service.contactUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            initial={{ opacity: 0, y: 12 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.15, duration: 0.25 }}
-                            className="group/contact inline-flex items-center gap-3 mt-10 px-8 py-3.5 bg-hero-warm-soft/90 text-hero-warm-deep border border-hero-warm-mid/40 text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-hero-warm-light hover:border-hero-warm-mid/60 transition-all duration-300"
-                          >
-                            <span>Связаться</span>
-                            <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover/contact:translate-x-0.5 group-hover/contact:-translate-y-0.5" />
-                          </motion.a>
-                        )}
+                        <motion.a
+                          href={service.contactUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.18 }}
+                          className="inline-flex items-center gap-2.5 px-6 py-3 bg-accent text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-accent-hover transition-colors duration-200 group"
+                        >
+                          <span>Связаться</span>
+                          <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </motion.a>
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

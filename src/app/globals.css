@@ -1,92 +1,85 @@
 @import "tailwindcss";
 
 :root {
-  --background: #111111;
-  --foreground: #ededed;
-  --accent: #d4d4d4;
-  --hero-warm-light: #c9b59f;
-  --hero-warm-mid: #9a8778;
-  --hero-warm-muted: #6f5f52;
-  --hero-warm-deep: #4a3f38;
-  --hero-warm-soft: #e0d5c8;
+  --bg: #FAF8F5;
+  --bg-2: #F2EDE6;
+  --bg-card: #EDE8E2;
+  --ink: #1C1612;
+  --ink-2: #4A3F36;
+  --ink-3: #9E8E82;
+  --accent: #C4522A;
+  --accent-hover: #A83E1C;
+  --warm: #E8DDD0;
+  --line: #D4CBBA;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-bg-card: var(--bg-card);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
   --color-accent: var(--accent);
-  --color-hero-warm-light: var(--hero-warm-light);
-  --color-hero-warm-mid: var(--hero-warm-mid);
-  --color-hero-warm-muted: var(--hero-warm-muted);
-  --color-hero-warm-deep: var(--hero-warm-deep);
-  --color-hero-warm-soft: var(--hero-warm-soft);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent-hover: var(--accent-hover);
+  --color-warm: var(--warm);
+  --color-line: var(--line);
+  --font-display: var(--font-cormorant);
+  --font-sans: var(--font-raleway);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-raleway), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #111111;
-}
-::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+.font-display {
+  font-family: var(--font-cormorant), Georgia, 'Times New Roman', serif;
 }
 
-/* Text Outline Utility */
-.text-outline {
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
-  color: transparent;
-}
-.text-outline-hover {
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
-  color: transparent;
+::selection {
+  background: var(--accent);
+  color: #fff;
 }
 
-/* Knockout text — letters reveal a warm layer behind */
-.text-hole {
-  background-image: linear-gradient(
-    180deg,
-    #f0e6da 0%,
-    #e0d5c8 12%,
-    #c9b59f 28%,
-    #9a8778 48%,
-    #6f5f52 68%,
-    #4a3f38 85%,
-    #2e2722 100%
-  );
-  background-size: 100% 220vh;
-  background-position: center 0%;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
+
+/* Accent rule utility */
+.rule-accent {
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
 }
 
-.text-hole--active {
-  background-size: 100% 180vh;
+/* Infinite horizontal marquee */
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
 }
 
-.text-hole-stroke {
-  -webkit-text-stroke: 1px rgba(111, 95, 82, 0.28);
-  color: transparent;
-}
-
-.text-hole-stroke--active {
-  -webkit-text-stroke: 1px rgba(201, 181, 159, 0.18);
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

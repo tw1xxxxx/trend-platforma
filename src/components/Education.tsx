@@ -5,8 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 
-const specialistDetails = [
-  'Эксперт-практик, более 30-летний опыт в швейной и модной отрасли.',
+const details = [
+  'Эксперт-практик, более 40-летний опыт в швейной и модной отрасли.',
   'Технолог-конструктор. Преподаватель.',
   'Опыт работы в домах моды.',
   '15 лет помощи создателям брендов и селлерам (массмаркет).',
@@ -14,86 +14,129 @@ const specialistDetails = [
 
 export default function Education() {
   return (
-    <section id="education" className="py-16 md:py-24 px-4 bg-background relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="relative grid grid-cols-1 md:grid-cols-12">
-          {/* Фото — крупное, без плашки, z-0 */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="col-span-full md:col-span-8 lg:col-span-7 row-start-1 z-0 pointer-events-none"
-          >
-            <div className="relative w-[155%] -ml-[12%] md:w-[130%] md:-ml-8 lg:w-[140%] lg:-ml-12 aspect-[3/4] md:aspect-[4/5]">
-              <Image
-                src="/images/education/specialist.png"
-                alt="Ведущий специалист"
-                fill
-                className="object-contain object-top md:object-bottom"
-                sizes="(max-width: 768px) 155vw, 65vw"
-                priority
-              />
-            </div>
-          </motion.div>
+    <section id="education" className="py-20 md:py-32 bg-bg-2">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6">
 
-          {/* Текст — наезжает на нижние ~30% фото */}
-          <div className="col-span-full md:col-span-6 md:col-start-7 lg:col-start-7 row-start-1 z-10 pt-[92%] sm:pt-[88%] md:pt-[36%] lg:pt-[32%] md:self-end">
-            <div className="space-y-6 md:space-y-8 bg-gradient-to-b from-transparent from-0% via-background/95 via-[12%] to-background to-[28%] md:via-[18%] md:to-[35%] pt-2 pb-1">
+        {/* Section label */}
+        <motion.div
+          initial={{ opacity: 0, x: -16 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className="flex items-center gap-4 mb-10 md:mb-14"
+        >
+          <span className="rule-accent" />
+          <span className="text-xs tracking-[0.3em] uppercase text-ink-3 font-medium">
+            Обучение
+          </span>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+          {/* Left — text content */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2
+              className="font-display font-bold uppercase leading-[0.9] text-ink mb-10 md:mb-12"
+              style={{ fontSize: 'clamp(32px, 6vw, 64px)' }}
+            >
+              Обучение,{' '}
+              <span className="text-accent">семинары,</span>
+              <br />
+              переподготовка
+            </h2>
+
+            {/* Specialist card */}
+            <div className="flex gap-6 sm:gap-8 items-start">
+              {/* Photo — contained frame */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="shrink-0 relative w-[90px] sm:w-[110px]"
               >
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase leading-tight tracking-tight text-hero-warm-light">
-                  Обучение, семинары, переподготовка
-                </h2>
+                <div className="relative w-full aspect-[3/4] overflow-hidden bg-bg-card">
+                  <Image
+                    src="/images/education/specialist.png"
+                    alt="Ведущий специалист"
+                    fill
+                    className="object-cover object-top"
+                    sizes="120px"
+                  />
+                </div>
+                {/* Accent corner */}
+                <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-accent" />
               </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.15 }}
-              >
-                <h3 className="text-xl md:text-2xl font-bold uppercase tracking-wide text-hero-warm-mid mb-6">
+              {/* Credentials */}
+              <div>
+                <p className="text-[10px] tracking-[0.3em] uppercase text-ink-3 font-medium mb-4">
                   Наш ведущий специалист
-                </h3>
-                <ul className="grid grid-cols-1 gap-4">
-                  {specialistDetails.map((detail, index) => (
+                </p>
+                <ul className="space-y-3">
+                  {details.map((d, i) => (
                     <motion.li
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: 0.2 + index * 0.08 }}
-                      className="flex items-start gap-4 text-hero-warm-mid group/item"
+                      transition={{ delay: 0.25 + i * 0.07, duration: 0.4 }}
+                      className="flex items-start gap-2.5 text-ink-2 text-sm leading-relaxed"
                     >
-                      <div className="w-8 h-[1px] bg-hero-warm-mid/40 mt-3 shrink-0 group-hover/item:w-12 group-hover/item:bg-hero-warm-light transition-all duration-300" />
-                      <span className="text-base md:text-lg font-light leading-relaxed tracking-wide">
-                        {detail}
-                      </span>
+                      <span className="mt-2 shrink-0 block w-3 h-[1px] bg-accent/50" />
+                      <span>{d}</span>
                     </motion.li>
                   ))}
                 </ul>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-              >
-                <Link
-                  href="/education"
-                  className="group inline-flex items-center gap-3 px-8 py-3.5 bg-hero-warm-soft/90 text-hero-warm-deep border border-hero-warm-mid/40 text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-hero-warm-light hover:border-hero-warm-mid/60 transition-all duration-300"
-                >
-                  <span>Подробнее о курсах</span>
-                  <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
-              </motion.div>
+              </div>
             </div>
-          </div>
+
+            {/* CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="mt-10"
+            >
+              <Link
+                href="/education"
+                className="inline-flex items-center gap-3 px-7 py-3.5 bg-ink text-bg text-xs font-bold uppercase tracking-[0.2em] hover:bg-accent transition-colors duration-200 group"
+              >
+                <span>Подробнее о курсах</span>
+                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          {/* Right — large image, editorial crop */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="relative hidden lg:block"
+          >
+            <div className="relative w-full aspect-[3/4] overflow-hidden bg-bg-card">
+              <Image
+                src="/images/education/specialist.png"
+                alt="Ведущий специалист Тренд-Платформы"
+                fill
+                className="object-cover object-top"
+                sizes="50vw"
+                priority
+              />
+              {/* Subtle warm fade at edges */}
+              <div className="absolute inset-0 ring-1 ring-inset ring-line/30" />
+            </div>
+            {/* Decorative accent lines */}
+            <div className="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-accent/60" />
+            <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-accent/60" />
+          </motion.div>
         </div>
       </div>
     </section>

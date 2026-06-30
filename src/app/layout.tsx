@@ -1,23 +1,16 @@
 import type { Metadata } from "next";
-import { Raleway, Cormorant_Garamond } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import ScrollProgress from "@/components/ScrollProgress";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const raleway = Raleway({
-  variable: "--font-raleway",
-  subsets: ["latin", "cyrillic"],
-  weight: ["300", "400", "500", "600", "700"],
+const ttFirsNeue = localFont({
+  src: "../fonts/tt-firs-neue/TTFirsNeue-Variable.woff2",
+  variable: "--font-tt-firs",
   display: "swap",
-});
-
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin", "cyrillic"],
-  weight: ["300", "400", "600", "700"],
-  style: ["normal", "italic"],
-  display: "swap",
+  weight: "100 900",
+  fallback: ["system-ui", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -31,7 +24,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru">
-      <body className={`${raleway.variable} ${cormorant.variable} antialiased`}>
+      <body className={`${ttFirsNeue.variable} antialiased`}>
         <ScrollProgress />
         <Header />
         {children}

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowUpRight, Phone, MapPin, Mail } from 'lucide-react';
 import ContactModal from './ContactModal';
 import ProductionMap from './ProductionMap';
+import { MessengerIcon } from './MessengerIcon';
 
 const navLinks = [
   { label: 'Услуги', href: '/#services' },
@@ -12,6 +13,30 @@ const navLinks = [
   { label: 'Обучение', href: '/#education' },
   { label: 'Трендвотчинг', href: '/#about' },
   { label: 'Курсы', href: '/education' },
+];
+
+const PHONE_DISPLAY = '+7 (962) 938-89-33';
+const PHONE_HREF = 'tel:+79629388933';
+
+const messengers = [
+  {
+    id: 'telegram' as const,
+    label: 'Telegram',
+    href: 'https://t.me/trendplatforma',
+    hover: 'hover:border-[#27A7E7]/50 hover:bg-[#27A7E7]/10',
+  },
+  {
+    id: 'max' as const,
+    label: 'MAX',
+    href: 'https://max.ru/write?phone=79629388933',
+    hover: 'hover:border-[#7B5CFF]/50 hover:bg-[#7B5CFF]/10',
+  },
+  {
+    id: 'whatsapp' as const,
+    label: 'WhatsApp',
+    href: 'https://wa.me/79629388933',
+    hover: 'hover:border-[#25D366]/50 hover:bg-[#25D366]/10',
+  },
 ];
 
 function TelegramIcon({ className }: { className?: string }) {
@@ -44,45 +69,41 @@ export default function Footer() {
       <footer id="footer">
 
         {/* ── DARK CTA BLOCK ── */}
-        <div className="bg-ink px-5 sm:px-6 py-16 sm:py-20 md:py-24">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10">
+        <div className="bg-ink px-5 sm:px-6 py-14 sm:py-16 md:py-20">
+          <div className="max-w-md mx-auto w-full">
+            <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-warm/40 mb-6 text-center">
+              Тренд-Платформа
+            </p>
 
-              {/* Heading */}
-              <div>
-                <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-warm/40 mb-5">
-                  Тренд-Платформа
-                </p>
-                <h2
-                  className="font-display font-bold uppercase leading-[0.88] text-bg"
-                  style={{ fontSize: 'clamp(38px, 8vw, 96px)' }}
-                >
-                  Готовы создать
-                  <br />
-                  <span className="text-accent">свой бренд?</span>
-                </h2>
-                <p className="mt-5 text-sm text-warm/50 max-w-md leading-relaxed">
-                  Полный цикл для fashion-брендов: от идеи до производства.
-                  Смотрим в будущее — создаём настоящее.
-                </p>
-              </div>
+            <button
+              onClick={() => setModalOpen(true)}
+              className="group w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-accent text-white text-sm font-semibold uppercase tracking-[0.1em] hover:bg-accent-hover transition-colors duration-200"
+            >
+              <span>Бесплатная консультация</span>
+              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </button>
 
-              {/* Action */}
-              <div className="flex flex-col gap-4 w-full lg:w-auto">
-                <button
-                  onClick={() => setModalOpen(true)}
-                  className="group w-full lg:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-accent text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-accent-hover transition-colors duration-200"
-                >
-                  <span>Отправить заявку</span>
-                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </button>
+            <a
+              href={PHONE_HREF}
+              className="text-phone block text-center mt-5 text-[17px] text-warm/60 hover:text-warm transition-colors"
+            >
+              {PHONE_DISPLAY}
+            </a>
+
+            <div className="flex flex-col gap-2 mt-6">
+              {messengers.map(({ id, label, href, hover }) => (
                 <a
-                  href="tel:+79629388933"
-                  className="text-center lg:text-right text-sm text-warm/40 hover:text-warm/70 transition-colors tracking-wide"
+                  key={id}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`group flex items-center gap-3 px-4 py-3 border border-warm/15 bg-warm/5 text-warm/90 text-sm font-medium transition-all duration-200 ${hover}`}
                 >
-                  +7 (962) 938-89-33
+                  <MessengerIcon id={id} size="md" />
+                  <span>Написать</span>
+                  <span className="sr-only">в {label}</span>
                 </a>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -92,7 +113,6 @@ export default function Footer() {
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-2 gap-8 md:gap-10 lg:grid-cols-4">
 
-              {/* Brand */}
               <div className="col-span-2 lg:col-span-1">
                 <Link href="/" className="inline-block mb-4 group">
                   <span className="font-display font-bold uppercase text-xl text-ink group-hover:text-accent transition-colors">
@@ -107,7 +127,6 @@ export default function Footer() {
                 </p>
               </div>
 
-              {/* Nav */}
               <div>
                 <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-ink-3 mb-4">
                   Навигация
@@ -126,7 +145,6 @@ export default function Footer() {
                 </ul>
               </div>
 
-              {/* Contacts */}
               <div>
                 <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-ink-3 mb-4">
                   Связь
@@ -134,11 +152,11 @@ export default function Footer() {
                 <ul className="space-y-3">
                   <li>
                     <a
-                      href="tel:+79629388933"
+                      href={PHONE_HREF}
                       className="flex items-center gap-2 text-ink-2 hover:text-accent transition-colors group"
                     >
                       <Phone className="w-3.5 h-3.5 text-ink-3 group-hover:text-accent shrink-0" />
-                      <span className="text-xs font-medium">+7 (962) 938-89-33</span>
+                      <span className="text-phone text-sm">{PHONE_DISPLAY}</span>
                     </a>
                   </li>
                   <li>
@@ -175,7 +193,6 @@ export default function Footer() {
                 </ul>
               </div>
 
-              {/* Addresses */}
               <div>
                 <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-ink-3 mb-4">
                   Адреса

@@ -24,8 +24,8 @@
   --color-accent-hover: var(--accent-hover);
   --color-warm: var(--warm);
   --color-line: var(--line);
-  --font-display: var(--font-cormorant);
-  --font-sans: var(--font-raleway);
+  --font-sans: var(--font-tt-firs);
+  --font-display: var(--font-tt-firs);
 }
 
 html {
@@ -35,12 +35,20 @@ html {
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--font-raleway), Arial, Helvetica, sans-serif;
+  font-family: var(--font-tt-firs), system-ui, sans-serif;
   overflow-x: hidden;
 }
 
 .font-display {
-  font-family: var(--font-cormorant), Georgia, 'Times New Roman', serif;
+  font-family: var(--font-tt-firs), system-ui, sans-serif;
+}
+
+.text-phone {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: 'tnum' 1, 'lnum' 1;
+  letter-spacing: 0;
+  font-weight: 500;
 }
 
 ::selection {
@@ -53,7 +61,6 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
 
-/* Accent rule utility */
 .rule-accent {
   display: block;
   width: 2rem;
@@ -62,7 +69,6 @@ body {
   flex-shrink: 0;
 }
 
-/* Infinite horizontal marquee */
 @keyframes marqueeScroll {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -75,6 +81,14 @@ body {
 }
 .marquee-track:hover {
   animation-play-state: paused;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

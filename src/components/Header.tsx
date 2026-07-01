@@ -1,18 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, ArrowUpRight, Mail } from 'lucide-react';
 import Link from 'next/link';
 import ContactModal from './ContactModal';
-
-const navItems = [
-  { label: 'Услуги', href: '/#services' },
-  { label: 'Команда', href: '/#team' },
-  { label: 'Обучение', href: '/#education' },
-  { label: 'Трендвотчинг', href: '/#about' },
-  { label: 'Курсы', href: '/education' },
-];
+import { useVersion } from '@/contexts/VersionContext';
 
 const socials = [
   {
@@ -67,6 +60,18 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { basePath } = useVersion();
+
+  const navItems = useMemo(
+    () => [
+      { label: 'Услуги', href: `${basePath}#services` },
+      { label: 'Команда', href: `${basePath}#team` },
+      { label: 'Обучение', href: `${basePath}#education` },
+      { label: 'Трендвотчинг', href: `${basePath}#about` },
+      { label: 'Курсы', href: '/education' },
+    ],
+    [basePath],
+  );
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -102,7 +107,7 @@ export default function Header() {
             </a>
 
             <Link
-              href="/"
+              href={basePath}
               className="absolute left-1/2 -translate-x-1/2 font-display font-bold uppercase tracking-[0.06em] text-ink hover:text-accent transition-colors"
               style={{ fontSize: 'clamp(14px, 1.2vw, 18px)' }}
             >
@@ -123,7 +128,7 @@ export default function Header() {
               </nav>
               <button
                 onClick={() => setModalOpen(true)}
-                className="group inline-flex items-center gap-1.5 px-4 py-2 bg-accent text-white text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-accent-hover transition-colors"
+                className="group inline-flex items-center gap-1.5 px-4 py-2 bg-ink text-bg text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-accent-hover transition-colors"
               >
                 <span>Заявка</span>
                 <ArrowUpRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -145,7 +150,7 @@ export default function Header() {
             </a>
 
             <Link
-              href="/"
+              href={basePath}
               onClick={() => menuOpen && closeMenu()}
               className="absolute left-1/2 -translate-x-1/2 font-display font-bold uppercase tracking-[0.05em] text-ink"
               style={{ fontSize: 'clamp(13px, 3.5vw, 17px)' }}
@@ -274,7 +279,7 @@ export default function Header() {
                 >
                   <button
                     onClick={() => { closeMenu(); setModalOpen(true); }}
-                    className="group w-full flex items-center justify-center gap-2.5 py-4 bg-accent text-white text-xs font-bold uppercase tracking-[0.22em] hover:bg-accent-hover transition-colors duration-200"
+                    className="group w-full flex items-center justify-center gap-2.5 py-4 bg-ink text-bg text-xs font-bold uppercase tracking-[0.22em] hover:bg-accent-hover transition-colors duration-200"
                   >
                     <span>Оставить заявку</span>
                     <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -296,13 +301,13 @@ export default function Header() {
                   className="group flex items-center gap-3 mb-5"
                 >
                   <div className="flex items-center justify-center w-10 h-10 border border-warm/20 bg-warm/5 group-hover:border-accent/50 transition-colors duration-200">
-                    <Phone className="w-4 h-4 text-accent" />
+                    <Phone className="w-4 h-4 text-accent-soft" />
                   </div>
                   <div>
                     <p className="text-[9px] font-semibold tracking-[0.3em] uppercase text-warm/40 mb-0.5">
                       Позвонить
                     </p>
-                    <p className="text-lg font-semibold tracking-wide text-bg group-hover:text-accent transition-colors duration-200">
+                    <p className="text-lg font-semibold tracking-wide text-bg group-hover:text-accent-soft transition-colors duration-200">
                       +7 (962) 938-89-33
                     </p>
                   </div>
@@ -328,14 +333,14 @@ export default function Header() {
                         <div className="flex items-center justify-center w-9 h-9 border border-warm/15 bg-warm/5 group-hover:border-accent/40 group-hover:bg-accent/10 transition-all duration-200">
                           <SocialIcon
                             type={s.icon}
-                            className="w-4 h-4 text-warm/60 group-hover:text-accent transition-colors"
+                            className="w-4 h-4 text-warm/60 group-hover:text-accent-soft transition-colors"
                           />
                         </div>
                         <div className="min-w-0">
                           <p className="text-[10px] font-semibold tracking-[0.15em] uppercase text-warm/40">
                             {s.label}
                           </p>
-                          <p className="text-sm font-medium text-bg/80 group-hover:text-accent transition-colors truncate">
+                          <p className="text-sm font-medium text-bg/80 group-hover:text-accent-soft transition-colors truncate">
                             {s.handle}
                           </p>
                         </div>

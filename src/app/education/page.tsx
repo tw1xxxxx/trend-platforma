@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { useVersion } from '@/contexts/VersionContext';
 
 const CONTACT_URL = 'https://t.me/trendplatforma';
 
@@ -57,8 +58,8 @@ function ActionBtn({
       rel="noopener noreferrer"
       className={`inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.18em] transition-colors duration-200 group ${
         variant === 'primary'
-          ? 'bg-accent text-white hover:bg-accent-hover'
-          : 'bg-transparent text-ink border border-line hover:border-accent hover:text-accent'
+          ? 'bg-ink text-bg hover:bg-accent-hover'
+          : 'bg-transparent text-ink border border-line hover:border-ink hover:text-ink'
       }`}
     >
       <span>{label}</span>
@@ -68,6 +69,8 @@ function ActionBtn({
 }
 
 export default function EducationPage() {
+  const { basePath } = useVersion();
+
   return (
     <div className="min-h-screen bg-bg text-ink">
 
@@ -84,7 +87,7 @@ export default function EducationPage() {
           className="mb-10 md:mb-14"
         >
           <Link
-            href="/"
+            href={basePath}
             className="inline-flex items-center gap-2 text-ink-3 hover:text-accent transition-colors group text-sm"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
@@ -110,7 +113,7 @@ export default function EducationPage() {
             style={{ fontSize: 'clamp(36px, 7vw, 80px)' }}
           >
             Обучение,{' '}
-            <span className="text-accent">семинары,</span>
+            <span className="text-accent-soft">семинары,</span>
             <br />
             переподготовка
           </h1>
@@ -139,7 +142,7 @@ export default function EducationPage() {
                 />
                 {/* Subtle bottom fade */}
                 <div className="absolute inset-0 bg-gradient-to-t from-bg-2/60 via-transparent to-transparent" />
-                <span className="absolute top-4 left-4 text-[9px] font-mono text-ink-3/60 tracking-widest">
+                <span className="absolute top-4 left-4 text-[9px] font-medium text-ink-3/60 tracking-widest tabular-nums">
                   {program.number}
                 </span>
               </div>

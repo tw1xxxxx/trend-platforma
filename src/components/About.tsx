@@ -50,7 +50,7 @@ export default function About() {
               </span>
             </div>
             <h2 className="text-[clamp(2rem,6.5vw,4.5rem)] font-semibold uppercase leading-[0.95] tracking-[-0.02em] text-ink">
-              Тренд<span className="text-accent">вотчинг</span>
+              Тренд<span className="text-accent-soft">вотчинг</span>
             </h2>
             <p className="mt-3 text-sm font-medium tracking-[0.2em] uppercase text-ink-3">
               в fashion
@@ -67,7 +67,7 @@ export default function About() {
           >
             {points.map((point, i) => (
               <li key={i} className="flex gap-4 items-start">
-                <span className="text-[11px] font-semibold tabular-nums text-accent/70 pt-1 shrink-0">
+                <span className="text-[11px] font-semibold tabular-nums text-accent-soft/80 pt-1 shrink-0">
                   0{i + 1}
                 </span>
                 <p className="text-sm md:text-[15px] text-ink-2 leading-relaxed">{point}</p>
@@ -98,7 +98,7 @@ export default function About() {
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
 
                 <div className="absolute top-4 left-4 px-2.5 py-1 bg-bg/90 backdrop-blur-sm">
-                  <span className="text-[10px] font-semibold tracking-[0.2em] text-accent uppercase">
+                  <span className="text-[10px] font-semibold tracking-[0.2em] text-accent-soft uppercase">
                     {card.number}
                   </span>
                 </div>

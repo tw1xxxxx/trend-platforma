@@ -14,7 +14,7 @@ const details = [
 
 export default function Education() {
   return (
-    <section id="education" className="py-20 md:py-32 bg-bg-2">
+    <section id="education" className="py-20 md:py-32 bg-bg">
       <div className="max-w-7xl mx-auto px-5 sm:px-6">
 
         {/* Section label */}
@@ -44,7 +44,7 @@ export default function Education() {
               style={{ fontSize: 'clamp(32px, 6vw, 64px)' }}
             >
               Обучение,{' '}
-              <span className="text-accent">семинары,</span>
+              <span className="text-accent-soft">семинары,</span>
               <br />
               переподготовка
             </h2>
@@ -69,7 +69,7 @@ export default function Education() {
                   />
                 </div>
                 {/* Accent corner */}
-                <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-accent" />
+                <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-accent-soft" />
               </motion.div>
 
               {/* Credentials */}
@@ -105,7 +105,7 @@ export default function Education() {
             >
               <Link
                 href="/education"
-                className="inline-flex items-center gap-3 px-7 py-3.5 bg-ink text-bg text-xs font-bold uppercase tracking-[0.2em] hover:bg-accent transition-colors duration-200 group"
+                className="inline-flex items-center gap-3 px-7 py-3.5 bg-ink text-bg text-xs font-bold uppercase tracking-[0.2em] hover:bg-accent-hover transition-colors duration-200 group"
               >
                 <span>Подробнее о курсах</span>
                 <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -134,8 +134,8 @@ export default function Education() {
               <div className="absolute inset-0 ring-1 ring-inset ring-line/30" />
             </div>
             {/* Decorative accent lines */}
-            <div className="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-accent/60" />
-            <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-accent/60" />
+            <div className="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-accent-soft/60" />
+            <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-accent-soft/60" />
           </motion.div>
         </div>
       </div>

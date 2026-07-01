@@ -9,7 +9,7 @@ const ICONS: Record<MessengerId, string> = {
   whatsapp: '/icons/whatsapp.png',
 };
 
-const sizeMap = { sm: 28, md: 32, lg: 36 } as const;
+const sizeMap = { sm: 28, md: 32, lg: 40 } as const;
 
 export function MessengerIcon({
   id,

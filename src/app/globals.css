@@ -1,16 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #FAF8F5;
-  --bg-2: #F2EDE6;
-  --bg-card: #EDE8E2;
-  --ink: #1C1612;
-  --ink-2: #4A3F36;
-  --ink-3: #9E8E82;
-  --accent: #C4522A;
-  --accent-hover: #A83E1C;
-  --warm: #E8DDD0;
-  --line: #D4CBBA;
+  --bg: #F7F6F3;
+  --bg-2: #EEEDEA;
+  --bg-card: #E2E0DA;
+  --ink: #111111;
+  --ink-2: #3A3A3A;
+  --ink-3: #7C7C78;
+  --accent: #111111;
+  --accent-hover: #2C2C2C;
+  --accent-soft: #9A8468;
+  --warm: #E6E2DA;
+  --line: #D5D1C9;
+  --bg-rgb: 247, 246, 243;
+  --ink-rgb: 17, 17, 17;
+  --font-sans: var(--font-onest);
+  --font-display: var(--font-onest);
 }
 
 @theme inline {
@@ -22,10 +27,11 @@
   --color-ink-3: var(--ink-3);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
   --color-warm: var(--warm);
   --color-line: var(--line);
-  --font-sans: var(--font-tt-firs);
-  --font-display: var(--font-tt-firs);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
 }
 
 html {
@@ -33,14 +39,11 @@ html {
 }
 
 body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-tt-firs), system-ui, sans-serif;
   overflow-x: hidden;
 }
 
 .font-display {
-  font-family: var(--font-tt-firs), system-ui, sans-serif;
+  font-family: var(--font-display), system-ui, sans-serif;
 }
 
 .text-phone {
@@ -51,9 +54,13 @@ body {
   font-weight: 500;
 }
 
+.safe-area-pb {
+  padding-bottom: max(2rem, env(safe-area-inset-bottom));
+}
+
 ::selection {
-  background: var(--accent);
-  color: #fff;
+  background: var(--ink);
+  color: var(--bg);
 }
 
 ::-webkit-scrollbar { width: 5px; }
@@ -65,7 +72,7 @@ body {
   display: block;
   width: 2rem;
   height: 1px;
-  background: var(--accent);
+  background: var(--accent-soft);
   flex-shrink: 0;
 }
 

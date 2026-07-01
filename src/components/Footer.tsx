@@ -1,22 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { ArrowUpRight, Phone, MapPin, Mail } from 'lucide-react';
 import ContactModal from './ContactModal';
 import ProductionMap from './ProductionMap';
 import { MessengerIcon } from './MessengerIcon';
-
-const navLinks = [
-  { label: 'Услуги', href: '/#services' },
-  { label: 'Команда', href: '/#team' },
-  { label: 'Обучение', href: '/#education' },
-  { label: 'Трендвотчинг', href: '/#about' },
-  { label: 'Курсы', href: '/education' },
-];
+import { useVersion } from '@/contexts/VersionContext';
 
 const PHONE_DISPLAY = '+7 (962) 938-89-33';
 const PHONE_HREF = 'tel:+79629388933';
+
+/** Узкая editorial-колонка на мобиле — центр экрана, ровные поля слева/справа */
+const MOBILE_COL = 'w-full max-w-[21rem] mx-auto sm:max-w-none sm:mx-0';
 
 const messengers = [
   {
@@ -38,6 +34,17 @@ const messengers = [
     hover: 'hover:border-[#25D366]/50 hover:bg-[#25D366]/10',
   },
 ];
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-3 mb-4">
+      <span className="rule-accent" />
+      <p className="text-xs font-bold tracking-[0.22em] uppercase text-ink-3">
+        {children}
+      </p>
+    </div>
+  );
+}
 
 function TelegramIcon({ className }: { className?: string }) {
   return (
@@ -63,80 +70,92 @@ function VkIcon({ className }: { className?: string }) {
 
 export default function Footer() {
   const [modalOpen, setModalOpen] = useState(false);
+  const { basePath } = useVersion();
+
+  const navLinks = useMemo(
+    () => [
+      { label: 'Услуги', href: `${basePath}#services` },
+      { label: 'Команда', href: `${basePath}#team` },
+      { label: 'Обучение', href: `${basePath}#education` },
+      { label: 'Трендвотчинг', href: `${basePath}#about` },
+      { label: 'Курсы', href: '/education' },
+    ],
+    [basePath],
+  );
 
   return (
     <>
       <footer id="footer">
 
         {/* ── DARK CTA BLOCK ── */}
-        <div className="bg-ink px-5 sm:px-6 py-14 sm:py-16 md:py-20">
-          <div className="max-w-md mx-auto w-full">
-            <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-warm/40 mb-6 text-center">
+        <div className="bg-ink px-5 sm:px-6 py-16 sm:py-20 md:py-24">
+          <div className="mx-auto w-full max-w-lg">
+            <p className="text-xs font-bold tracking-[0.28em] uppercase text-warm/50 mb-6 text-center sm:text-left">
               Тренд-Платформа
             </p>
 
-            <button
-              onClick={() => setModalOpen(true)}
-              className="group w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-accent text-white text-sm font-semibold uppercase tracking-[0.1em] hover:bg-accent-hover transition-colors duration-200"
-            >
-              <span>Бесплатная консультация</span>
-              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </button>
+            <div className="rounded-3xl border border-warm/10 bg-warm/[0.03] p-5 sm:p-6">
+              <button
+                type="button"
+                onClick={() => setModalOpen(true)}
+                className="group flex w-full items-center justify-center gap-3 rounded-2xl bg-bg px-6 py-5 text-base font-semibold uppercase tracking-[0.08em] text-ink transition-colors duration-200 hover:bg-warm"
+              >
+                <span>Бесплатная консультация</span>
+                <ArrowUpRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </button>
 
-            <a
-              href={PHONE_HREF}
-              className="text-phone block text-center mt-5 text-[17px] text-warm/60 hover:text-warm transition-colors"
-            >
-              {PHONE_DISPLAY}
-            </a>
+              <a
+                href={PHONE_HREF}
+                className="text-phone mt-5 block text-center text-xl text-warm/70 transition-colors hover:text-warm sm:text-2xl"
+              >
+                {PHONE_DISPLAY}
+              </a>
 
-            <div className="flex flex-col gap-2 mt-6">
-              {messengers.map(({ id, label, href, hover }) => (
-                <a
-                  key={id}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`group flex items-center gap-3 px-4 py-3 border border-warm/15 bg-warm/5 text-warm/90 text-sm font-medium transition-all duration-200 ${hover}`}
-                >
-                  <MessengerIcon id={id} size="md" />
-                  <span>Написать</span>
-                  <span className="sr-only">в {label}</span>
-                </a>
-              ))}
+              <div className="mt-6 flex flex-col gap-2.5">
+                {messengers.map(({ id, label, href, hover }) => (
+                  <a
+                    key={id}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`group flex w-full items-center gap-3.5 rounded-xl border border-warm/15 bg-ink/40 px-4 py-3.5 text-[15px] font-medium text-warm/90 transition-all duration-200 ${hover}`}
+                  >
+                    <MessengerIcon id={id} size="md" />
+                    <span>Написать в {label}</span>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
         {/* ── INFO GRID ── */}
-        <div className="bg-bg-2 border-t border-line/40 px-5 sm:px-6 py-12 md:py-16">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-2 gap-8 md:gap-10 lg:grid-cols-4">
+        <div className="bg-bg-2 border-t border-line/40 px-5 sm:px-6 py-14 md:py-20">
+          <div className="max-w-7xl mx-auto w-full">
+            <div className={`${MOBILE_COL} flex flex-col gap-10 sm:max-w-none sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-10 md:gap-12 lg:gap-10`}>
 
-              <div className="col-span-2 lg:col-span-1">
-                <Link href="/" className="inline-block mb-4 group">
-                  <span className="font-display font-bold uppercase text-xl text-ink group-hover:text-accent transition-colors">
+              <div>
+                <Link href={basePath} className="inline-block mb-4 group">
+                  <span className="font-display font-bold uppercase text-2xl md:text-3xl text-ink group-hover:text-accent transition-colors">
                     Тренд
                   </span>
-                  <span className="font-display font-light uppercase text-xl text-ink-3">
+                  <span className="font-display font-light uppercase text-2xl md:text-3xl text-ink-3">
                     {' '}— Платформа
                   </span>
                 </Link>
-                <p className="text-xs text-ink-3 leading-relaxed max-w-[220px]">
+                <p className="text-sm md:text-base text-ink-3 leading-relaxed">
                   Создание и развитие брендов одежды. От идеи до полного цикла производства.
                 </p>
               </div>
 
               <div>
-                <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-ink-3 mb-4">
-                  Навигация
-                </p>
-                <ul className="space-y-2.5">
+                <SectionLabel>Навигация</SectionLabel>
+                <ul className="grid grid-cols-2 gap-x-4 gap-y-3 sm:block sm:space-y-3">
                   {navLinks.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="text-xs text-ink-2 hover:text-accent transition-colors tracking-wide"
+                        className="text-sm md:text-base text-ink-2 hover:text-accent transition-colors"
                       >
                         {link.label}
                       </Link>
@@ -146,26 +165,24 @@ export default function Footer() {
               </div>
 
               <div>
-                <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-ink-3 mb-4">
-                  Связь
-                </p>
-                <ul className="space-y-3">
+                <SectionLabel>Связь</SectionLabel>
+                <ul className="space-y-3.5">
                   <li>
                     <a
                       href={PHONE_HREF}
-                      className="flex items-center gap-2 text-ink-2 hover:text-accent transition-colors group"
+                      className="flex items-center gap-3 text-ink-2 hover:text-accent transition-colors group"
                     >
-                      <Phone className="w-3.5 h-3.5 text-ink-3 group-hover:text-accent shrink-0" />
-                      <span className="text-phone text-sm">{PHONE_DISPLAY}</span>
+                      <Phone className="w-4 h-4 text-ink-3 group-hover:text-accent shrink-0" />
+                      <span className="text-phone text-base">{PHONE_DISPLAY}</span>
                     </a>
                   </li>
                   <li>
                     <a
                       href="mailto:trend_platforma@mail.ru"
-                      className="flex items-center gap-2 text-ink-2 hover:text-accent transition-colors group"
+                      className="flex items-center gap-3 text-ink-2 hover:text-accent transition-colors group"
                     >
-                      <Mail className="w-3.5 h-3.5 text-ink-3 group-hover:text-accent shrink-0" />
-                      <span className="text-xs break-all">trend_platforma@mail.ru</span>
+                      <Mail className="w-4 h-4 text-ink-3 group-hover:text-accent shrink-0" />
+                      <span className="text-sm break-all">trend_platforma@mail.ru</span>
                     </a>
                   </li>
                   <li>
@@ -173,10 +190,10 @@ export default function Footer() {
                       href="https://t.me/trendplatforma"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-ink-3 hover:text-[#229ED9] transition-colors"
+                      className="flex items-center gap-3 text-ink-2 hover:text-[#229ED9] transition-colors"
                     >
-                      <TelegramIcon className="w-3.5 h-3.5 shrink-0" />
-                      <span className="text-xs">@trendplatforma</span>
+                      <TelegramIcon className="w-4 h-4 shrink-0" />
+                      <span className="text-sm">@trendplatforma</span>
                     </a>
                   </li>
                   <li>
@@ -184,38 +201,36 @@ export default function Footer() {
                       href="https://vk.com/trendplatforma"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-ink-3 hover:text-[#4C75A3] transition-colors"
+                      className="flex items-center gap-3 text-ink-2 hover:text-[#4C75A3] transition-colors"
                     >
-                      <VkIcon className="w-3.5 h-3.5 shrink-0" />
-                      <span className="text-xs">ВКонтакте</span>
+                      <VkIcon className="w-4 h-4 shrink-0" />
+                      <span className="text-sm">ВКонтакте</span>
                     </a>
                   </li>
                 </ul>
               </div>
 
               <div>
-                <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-ink-3 mb-4">
-                  Адреса
-                </p>
+                <SectionLabel>Адреса</SectionLabel>
                 <ul className="space-y-4">
-                  <li className="flex items-start gap-2">
-                    <MapPin className="w-3.5 h-3.5 text-ink-3 shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-wide text-ink mb-1">
+                  <li className="flex items-start gap-3">
+                    <MapPin className="w-4 h-4 text-ink-3 shrink-0 mt-1" />
+                    <div className="min-w-0">
+                      <p className="text-xs font-bold uppercase tracking-wide text-ink mb-1">
                         Офис
                       </p>
-                      <p className="text-xs text-ink-3 leading-relaxed">
+                      <p className="text-sm text-ink-3 leading-relaxed">
                         г. Москва, ул. Тверская, д. 12, офис 405
                       </p>
                     </div>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <MapPin className="w-3.5 h-3.5 text-ink-3 shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-wide text-ink mb-1">
+                  <li className="flex items-start gap-3">
+                    <MapPin className="w-4 h-4 text-ink-3 shrink-0 mt-1" />
+                    <div className="min-w-0">
+                      <p className="text-xs font-bold uppercase tracking-wide text-ink mb-1">
                         Производство
                       </p>
-                      <p className="text-xs text-ink-3 leading-relaxed">
+                      <p className="text-sm text-ink-3 leading-relaxed">
                         Московская обл., г. Подольск, ул. Промышленная, д. 8
                       </p>
                     </div>
@@ -228,24 +243,21 @@ export default function Footer() {
 
         {/* ── MAP BLOCK ── */}
         <div className="border-t border-line/40 px-5 sm:px-6 pt-10 pb-0 bg-bg-2">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex items-center gap-3 mb-5">
-              <span className="rule-accent" />
-              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-ink-3">
-                Наш цех — Подольск
-              </span>
+          <div className="max-w-7xl mx-auto w-full">
+            <div className={MOBILE_COL}>
+              <SectionLabel>Наш цех — Подольск</SectionLabel>
             </div>
-            <ProductionMap />
+            <div className={`${MOBILE_COL} sm:max-w-none mt-2`}>
+              <ProductionMap />
+            </div>
           </div>
         </div>
 
         {/* ── BOTTOM BAR ── */}
-        <div className="bg-bg-2 border-t border-line/40 px-5 sm:px-6 py-4 mt-10">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-ink-3">
+        <div className="bg-bg-2 border-t border-line/40 px-5 sm:px-6 py-6 mt-8">
+          <div className={`${MOBILE_COL} sm:max-w-7xl flex flex-col gap-2 text-sm text-ink-3 sm:flex-row sm:justify-between`}>
             <p>© {new Date().getFullYear()} Тренд-Платформа. Все права защищены.</p>
-            <a href="#" className="hover:text-accent transition-colors">
-              Политика конфиденциальности
-            </a>
+            <span>Политика конфиденциальности — скоро</span>
           </div>
         </div>
       </footer>

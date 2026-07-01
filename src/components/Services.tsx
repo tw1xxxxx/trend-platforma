@@ -81,7 +81,7 @@ export default function Services() {
                   aria-expanded={isOpen}
                 >
                   <div className="flex items-center gap-4 md:gap-8 min-w-0 flex-1 overflow-hidden">
-                    <span className="text-[10px] font-mono text-ink-3/50 tabular-nums shrink-0 w-5">
+                    <span className="text-[10px] font-medium text-ink-3/50 tabular-nums shrink-0 w-5">
                       {service.number}
                     </span>
                     <h3
@@ -138,7 +138,7 @@ export default function Services() {
                           initial={{ opacity: 0, y: 8 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.18 }}
-                          className="inline-flex items-center gap-2.5 px-6 py-3 bg-accent text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-accent-hover transition-colors duration-200 group"
+                          className="inline-flex items-center gap-2.5 px-6 py-3 bg-ink text-bg text-xs font-bold uppercase tracking-[0.2em] hover:bg-accent-hover transition-colors duration-200 group"
                         >
                           <span>Связаться</span>
                           <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

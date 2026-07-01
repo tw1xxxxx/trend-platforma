@@ -42,7 +42,7 @@ export default function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(to bottom, rgba(250,248,245,0.55) 0%, rgba(250,248,245,0.72) 40%, rgba(250,248,245,0.90) 75%, rgba(250,248,245,0.97) 100%)',
+              'linear-gradient(to bottom, rgba(var(--bg-rgb),0.55) 0%, rgba(var(--bg-rgb),0.72) 40%, rgba(var(--bg-rgb),0.90) 75%, rgba(var(--bg-rgb),0.97) 100%)',
           }}
         />
       </div>
@@ -75,7 +75,7 @@ export default function Hero() {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="flex items-center gap-3 mb-3"
         >
-          <div className="w-5 h-[1px] bg-accent" />
+          <div className="w-5 h-[1px] bg-accent-soft" />
           <span className="text-[10px] font-medium tracking-[0.35em] uppercase text-ink-3/70">
             Москва, с 2020
           </span>
@@ -131,16 +131,15 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Slogan — italic serif */}
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.7 }}
-          className="font-display italic text-ink-3 mt-4 ml-1"
+          className="text-ink-2 mt-4 ml-1 font-light"
           style={{ fontSize: 'clamp(14px, 2.2vw, 20px)' }}
         >
-          Смотрим в будущее —&nbsp;
-          <span className="not-italic text-accent font-semibold uppercase tracking-widest" style={{ fontSize: '0.75em' }}>
+          Смотрим в будущее —{' '}
+          <span className="text-ink font-medium uppercase tracking-[0.18em]" style={{ fontSize: '0.85em' }}>
             создаём настоящее
           </span>
         </motion.p>
@@ -158,7 +157,7 @@ export default function Hero() {
             <span
               key={i}
               className={`text-[11px] font-semibold uppercase tracking-[0.25em] ${
-                char === '·' ? 'text-accent' : 'text-ink-3/60'
+                char === '·' ? 'text-accent-soft' : 'text-ink-3/60'
               }`}
             >
               {char}
